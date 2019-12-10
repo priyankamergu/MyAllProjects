@@ -1,0 +1,8 @@
+package com.interview.dao.impl;
+
+import com.interview.dao.CandidateDao;
+
+public class CandidateDaoImpl implements CandidateDao
+{
+
+}

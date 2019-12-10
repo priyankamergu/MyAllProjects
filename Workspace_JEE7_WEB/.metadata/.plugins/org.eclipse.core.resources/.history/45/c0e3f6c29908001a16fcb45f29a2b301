@@ -1,0 +1,17 @@
+package com.prime;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+@Path("/prime")
+public class Prime 
+{
+	@GET
+	@Produces("application/xml")
+	public String cal()
+	{
+		
+	}
+	
+}

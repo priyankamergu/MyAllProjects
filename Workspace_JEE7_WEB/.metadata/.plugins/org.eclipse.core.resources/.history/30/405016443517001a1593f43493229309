@@ -1,0 +1,8 @@
+package com.interview.dao.impl;
+
+import com.interview.dao.TechnicalTwoDao;
+
+public class TechnicalTwoDaoImpl implements TechnicalTwoDao 
+{
+
+}

@@ -1,0 +1,38 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from SAOPServiceService WSDL service -->
+
+  <service name="SAOPService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services.com"/>
+      <parameter name="wsdlServiceElement" value="SAOPServiceService"/>
+      <parameter name="schemaQualified" value="http://services.com"/>
+      <parameter name="wsdlServicePort" value="SAOPService"/>
+      <parameter name="className" value="com.services.SAOPServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="SAOPService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="calculate" qname="operNS:calculate" xmlns:operNS="http://services.com" returnQName="retNS:calculateReturn" xmlns:retNS="http://services.com" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:term" xmlns:pns="http://services.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:rate" xmlns:pns="http://services.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:sumAssured" xmlns:pns="http://services.com" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="calculatePremium" qname="operNS:calculatePremium" xmlns:operNS="http://services.com" returnQName="retNS:calculatePremiumReturn" xmlns:retNS="http://services.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:age" xmlns:pns="http://services.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:term_of_Insurance" xmlns:pns="http://services.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:smokingHabit" xmlns:pns="http://services.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:accidentBenifit" xmlns:pns="http://services.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:sumAssured" xmlns:pns="http://services.com" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="calculate calculatePremium"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,14 @@
+package com.dao;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class ProductDAOTest {
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}

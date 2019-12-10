@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="com.util.DbConnection"%>
+<%@ page import="java.sql.*" %>
+<% Class.forName("com.mysql.cj.jdbc.Driver"); %>
+<HTML>
+    <HEAD>
+        <TITLE>Selecting tableName From a Database</TITLE>
+    </HEAD>
+
+    <BODY>
+        <H1>Selecting tableName From a Database</H1>
+
+        <% 
+        String fname=request.getParameter("fname");
+            Connection connection = DbConnection.getConnect();
+			PreparedStatement pstmt=connection.prepareStatement("DELETE from registration where First_Name = ?");
+          	pstmt.setString(1, fname);
+			pstmt.executeUpdate();
+        %>
+
+       <center><h1>Record Deleted</h1> </center>
+    </BODY>
+</HTML>

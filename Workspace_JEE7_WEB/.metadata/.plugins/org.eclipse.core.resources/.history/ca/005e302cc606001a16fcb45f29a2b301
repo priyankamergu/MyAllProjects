@@ -1,0 +1,29 @@
+package com.swt.classes;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+public class ButtonListener 
+{
+	public void buttonListner(Display display)
+	{
+		Shell shell=new Shell(display);
+		Button button1=new Button(shell, SWT.None);
+		button1.setText("B1");
+button1.addSelectionListener(new SelectionAdapter() {
+			
+			public void widgetSelected(SelectionEvent e)
+			{
+				System.out.println("Submit button was clicked");
+			}
+		});
+	}
+	public static void main(String args[])
+	{
+		
+	}
+}

@@ -1,0 +1,115 @@
+package com.interview.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.interview.dao.EmployeeDao;
+import com.interview.dao.TechnicalOneDao;
+import com.interview.dao.impl.EmployeeDaoImpl;
+import com.interview.dao.impl.TechnicalOneDaoImpl;
+import com.interview.pojo.TechnicalOne;
+
+@WebServlet("/TechnicalOneController")
+public class TechnicalOneController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
+
+	static TechnicalOneDao technicalOneDao = new TechnicalOneDaoImpl();
+	static EmployeeDao employeeDao = new EmployeeDaoImpl();
+
+	public TechnicalOneController()
+	{
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException 
+	{
+		String action = request.getParameter("action");
+		System.out.println("Action -> " + action);
+		// Delete from TechnicalOne by candidateId
+		if (action != null && action.equals("deleteTechnicalOne"))
+		{
+			String candidateId = request.getParameter("candidateId");
+			boolean flag = technicalOneDao.deleteTechnicalOne(Integer.parseInt(candidateId));
+			if (flag) 
+			{
+				System.out.println("TechnicalOneController -> Delete TechnicalOne Successfull.....");
+				response.sendRedirect("TechnicalOneController");
+			}
+		}
+
+		// Redirect to Default Page i.e. index.jsp
+		else
+		{
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+
+	//	doGet(request, response);
+
+		String action = request.getParameter("action");
+		System.out.println("Action -> " + action);
+		
+		// Employee Login
+		if (action != null && action.equals("employeelogin")) {
+			String emailId = request.getParameter("employeeEmailId");
+			String password = request.getParameter("employeePassword");
+			System.out.println("*EmployeeLogin*");
+			boolean flag = employeeDao.employeeLogin(emailId, password);
+
+			if (flag) 
+			{
+				System.out.println("TechnicalOneController -> Employee Login Successfull.....");
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("AptitudeSelectedList.jsp");
+				request.setAttribute("", );
+				requestDispatcher.forward(request, response);
+				
+			}
+			else
+			{
+				System.out.println("TechnicalOneController -> Employee Login Successfull.....");
+			}
+		}
+
+		// Insert into TechnicalOne
+		else if (action != null && action.equals("insertTechnicalOne")) 
+		{
+
+			String candidateId = request.getParameter("candidateId");
+			String employeeId = request.getParameter("employeeId");
+			String review = request.getParameter("review");
+			String remark = request.getParameter("remark");
+			String technicalOneStatus = request.getParameter("technicalOneStatus");
+
+			TechnicalOne technicalOne = new TechnicalOne(Integer.parseInt(candidateId), Integer.parseInt(employeeId),
+					review, remark, technicalOneStatus);
+
+			boolean flag = technicalOneDao.insertTechnicalOne(technicalOne);
+			if (flag)
+			{
+				System.out.println("TechnicalOneController -> Insertion of TechnicalOne Successfull.....");
+				request.getRequestDispatcher("TechnicalOneController").forward(request, response);
+
+				//response.sendRedirect("TechnicalOneController");
+			} 
+		} 
+		else 
+		{
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			//return;
+		}
+
+	}
+
+}

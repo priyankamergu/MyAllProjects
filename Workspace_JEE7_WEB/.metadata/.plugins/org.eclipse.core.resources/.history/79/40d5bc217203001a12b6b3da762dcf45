@@ -1,0 +1,46 @@
+<%@page import="com.login.succfail.RegistrationPOJO"%>
+<%@page import="com.login.succfail.RegisterDAO"%>
+<%@page import="com.login.succfail.RegistreDAOImpl"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+RegisterDAO rdao=new RegistreDAOImpl();
+int id=(int)session.getAttribute("id");
+RegistrationPOJO r=(RegistrationPOJO)rdao.SerachUser(id);
+%>
+<center>
+<form>
+ <TABLE BORDER="1">
+            <TR>
+                <TH>First Name</TH>
+                <TH>Last Name</TH>
+                <TH>Address</TH>
+                <TH>Mobile Number</TH>
+                <TH>Department</TH>
+                <TH>UserName</TH>
+                <TH>Password</TH>
+            </TR>
+            <% while(rs.next()){ %>
+            <TR>
+                <TD> <%= rs.getString(1) %></td>
+                <TD> <%= rs.getString(2) %></TD>
+                <TD> <%= rs.getString(3) %></TD>
+                <TD> <%= rs.getString(4) %></TD>
+                <TD> <%= rs.getString(5) %></TD>
+                <TD> <%= rs.getString(6) %></TD>
+                <TD> <%= rs.getString(7) %></TD>
+            </TR>
+            <% } %>
+        </TABLE>
+</form>
+</center>
+
+</body>
+</html>

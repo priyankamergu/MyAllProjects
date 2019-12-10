@@ -1,0 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> --%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Technical Assessment One Page</title>
+</head>
+<body>
+	<form action="">
+		<center>
+			<br> <br>
+			<h1>
+				<font color="darkblue">Technical Assessment 1</font>
+			</h1>
+			<br> <br>
+			<table>
+				<tr>
+					<td><b>Student Name : </b></td>
+					<td><label>${studentName}</label></td>
+				</tr>
+				<tr>
+					<td><b>Student Marks : </b></td>
+					<td><label>${studentMarks}</label></td>
+				</tr>
+				<tr>
+					<td><b>Student Review : </b></td>
+					<td><input type="radio" name="review" value="Excellent">Excellent</input></td>
+					<td><input type="radio" name="review" value="Good">Good</input></td>
+					<td><input type="radio" name="review" value="Average">Average</input></td>
+					<td><input type="radio" name="review" value="Poor">Poor</input></td>
+				</tr>
+				<tr><td>Remarks</td><td> : </td><td><textarea name="remarks" rows="4" cols="5">  </td></tr>
+			</table>
+
+		</center>
+	</form>
+
+
+</body>
+</html>

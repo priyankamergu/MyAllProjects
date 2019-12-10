@@ -1,0 +1,14 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+public class TreeListenerEx
+{
+	private static int shellWidth=1000;
+	private static int shellHieght=700;
+	private static void addWidgetsToShell(Display display,Shell shell)
+	{
+		
+	}
+}

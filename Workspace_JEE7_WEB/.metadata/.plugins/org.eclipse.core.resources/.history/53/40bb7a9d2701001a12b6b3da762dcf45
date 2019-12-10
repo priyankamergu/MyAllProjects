@@ -1,0 +1,13 @@
+package com.util;
+
+import java.sql.Connection;
+
+public class DbConnection {
+
+	
+	Connection connection;
+	public static Connection() {
+		
+	}
+	
+}

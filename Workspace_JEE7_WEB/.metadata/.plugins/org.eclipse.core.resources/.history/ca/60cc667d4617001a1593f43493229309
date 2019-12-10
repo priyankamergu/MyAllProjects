@@ -1,0 +1,13 @@
+package com.interview.dao;
+
+import java.sql.Connection;
+
+import com.interview.pojo.Candidate;
+
+public interface CandidateDao
+{
+	public boolean insertCandiddate(Candidate candidate);
+	public boolean deleteCandidate(Integer candidateId);
+	
+	
+}

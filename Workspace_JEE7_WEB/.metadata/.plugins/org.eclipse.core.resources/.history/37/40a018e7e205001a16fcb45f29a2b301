@@ -1,0 +1,22 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+
+public class AbsoluteEx {
+
+	public AbsoluteEx(Display display)
+	{
+		
+	}
+	public void initUI() 
+	{
+		
+	}
+	public static void main(String[] args) {
+		
+		
+		
+
+	}
+
+}

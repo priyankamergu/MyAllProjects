@@ -1,0 +1,15 @@
+package com.dao;
+
+import com.suit.pojo.User;
+
+public class UserDAO 
+{
+	public User save(User user)
+	{
+		return user;
+	}
+	public void delete(User user)
+	{
+		
+	}
+}

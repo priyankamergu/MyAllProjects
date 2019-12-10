@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;com.swt.classes.FormLayout.java&apos; to &apos;FormLayoutEx.java&apos;&#x0D;&#x0A;- Original project: &apos;SWTProgram&apos;&#x0D;&#x0A;- Original element: &apos;com.swt.classes.FormLayout.java&apos;&#x0D;&#x0A;- Renamed element: &apos;com.swt.classes.FormLayoutEx.java&apos;" description="Rename compilation unit &apos;FormLayout.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;com.swt.classes{FormLayout.java" name="FormLayoutEx.java" references="false" stamp="1573631461582" version="1.0"/>
+</session>

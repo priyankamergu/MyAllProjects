@@ -1,0 +1,22 @@
+package com.services.apachecamel.exxmaple1;
+
+import org.apache.camel.CamelContext;
+import org.apache.camel.impl.DefaultCamelContext;
+
+public class FileProcessorMain
+{
+	public static void main(String args[])
+	{
+		CamelContext context=new DefaultCamelContext();
+		try
+		{
+			
+		}
+		
+		
+		catch(Exceprion e)
+		{
+			
+		}
+	}
+}

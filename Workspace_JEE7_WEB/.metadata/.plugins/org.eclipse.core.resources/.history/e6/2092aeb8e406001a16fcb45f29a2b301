@@ -1,0 +1,7 @@
+package com.user.data;
+
+public interface UserDAO 
+{
+	public boolean insertIntoFile(User u);
+	public User displayFromFile();
+}

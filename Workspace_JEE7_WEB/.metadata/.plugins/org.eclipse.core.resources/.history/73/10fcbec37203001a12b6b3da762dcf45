@@ -1,0 +1,25 @@
+<%@page import="com.util.DbConnection"%>
+<%@ page import="java.sql.*" %>
+
+<% Class.forName("com.mysql.cj.jdbc.Driver"); %>
+
+<HTML>
+    <HEAD>
+       
+    </HEAD>
+
+    <BODY>
+        
+
+        <% 
+        int id=Integer.parseInt(request.getParameter("id"));
+            Connection connection = DbConnection.getConnect();
+			PreparedStatement pstmt=connection.prepareStatement("select * from registration where id = ?");
+          	pstmt.setInt(1, id);
+			ResultSet rs=pstmt.executeQuery();
+			
+        %>
+
+     
+    </BODY>
+</HTML>

@@ -1,0 +1,11 @@
+package com.interview.pojo;
+
+public class candidate 
+{
+	private String candidateName;
+	private String candidateEmailId;
+	private String candidateMobileNo;
+	private Double candidateMarks;
+	private String candidatePanCardNo;
+	private String candidateResumePath;
+}

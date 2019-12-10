@@ -1,0 +1,51 @@
+package com.interview.pojo;
+
+public class Employee
+{
+	private String employeeName;
+	private String employeeDesignation;
+	private String employeeEmailId;
+	
+	
+	public Employee(String employeeName, String employeeDesignation, String employeeEmailId) 
+	{
+		super();
+		this.employeeName = null;
+		this.employeeDesignation = null;
+		this.employeeEmailId = null;
+	}
+	
+	public Employee(String employeeName, String employeeDesignation, String employeeEmailId) 
+	{
+		super();
+		this.employeeName = employeeName;
+		this.employeeDesignation = employeeDesignation;
+		this.employeeEmailId = employeeEmailId;
+	}
+	public String getEmployeeName()
+	{
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName)
+	{
+		this.employeeName = employeeName;
+	}
+	public String getEmployeeDesignation() 
+	{
+		return employeeDesignation;
+	}
+	public void setEmployeeDesignation(String employeeDesignation) 
+	{
+		this.employeeDesignation = employeeDesignation;
+	}
+	public String getEmployeeEmailId() 
+	{
+		return employeeEmailId;
+	}
+	public void setEmployeeEmailId(String employeeEmailId)
+	{
+		this.employeeEmailId = employeeEmailId;
+	}
+	
+	
+}

@@ -1,0 +1,47 @@
+package com.allianz.shopping.dao;
+
+import java.util.List;
+
+import com.allianz.shopping.model.Category;
+import com.allianz.shopping.model.Product;
+
+public class CategoryDAOImpl  implements CategoryDAO
+{
+
+	@Override
+	public boolean addCategory(Category category) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean updateCategory(Category catgeory) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteCategory(int id) {
+		
+		return false;
+	}
+
+	@Override
+	public List<Product> getALLCategory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLCategoryByName(String newPattern) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product getCategoryById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

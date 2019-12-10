@@ -1,0 +1,19 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+
+public class LoginForm
+{
+	public LoginForm(Display display) {
+		initUI(display);
+		
+	}
+	public void initUI(Display display)
+	{
+		
+	}
+	public static void main(String args[])
+	{
+		LoginForm log=new LoginForm(new Display);
+	}
+}

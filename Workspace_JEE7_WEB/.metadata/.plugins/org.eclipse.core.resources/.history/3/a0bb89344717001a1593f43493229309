@@ -1,0 +1,81 @@
+package com.interview.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.interview.dao.CandidateDao;
+import com.interview.pojo.Candidate;
+import com.interview.utility.DBUtilityConnection;
+
+public class CandidateDaoImpl implements CandidateDao
+{
+
+	@Override
+	public boolean insertCandiddate(Candidate candidate)
+	{
+		Connection connection=null;
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO  candidate(candidate_name,candidate_email_id,candidate_mobile_no,candidate_marks,candidate_pancard_no,candidate_resume) values(?,?,?,?,?)";
+			PreparedStatement  preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, techincalTwo.getCandidateId());
+			preparedStatement.setInt(2, techincalTwo.getEmployeeId());
+			preparedStatement.setString(3, techincalTwo.getReview());
+			preparedStatement.setString(4, techincalTwo.getRemark());
+			preparedStatement.setString(5,techincalTwo.getTechnicalTwoStatus() );
+			
+			Integer result=preparedStatement.executeUpdate();
+			if(result>0)
+			{
+				System.out.println("TechincalTwo->Inserted Successfully");
+				return true;
+			}
+			else
+			{
+				System.out.println("TechincalTwo->Inserted Failed");
+				return false;
+			}
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{			
+			try 
+			{
+				connection.close();				
+			}
+			catch (SQLException e) 
+			{
+				
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteCandidate(Integer candidateId) {
+	
+		return false;
+	}
+
+	@Override
+	public List<Candidate> getAllCandidates() {
+		
+		return null;
+	}
+
+	@Override
+	public Candidate getbyCandidateId(Integer candidateId) {
+		
+		return null;
+	}
+
+}

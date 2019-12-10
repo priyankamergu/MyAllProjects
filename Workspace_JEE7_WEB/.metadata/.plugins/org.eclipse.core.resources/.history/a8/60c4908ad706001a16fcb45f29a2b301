@@ -1,0 +1,18 @@
+package com.user.data;
+
+public class UserDAOImpl implements UserDAO
+{
+
+	@Override
+	public boolean insertIntoFile(User u) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public User displayFromFile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

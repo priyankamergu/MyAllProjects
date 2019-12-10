@@ -1,0 +1,11 @@
+package com.services.apachecamel.exxmaple1;
+
+import org.apache.camel.CamelContext;
+
+public class HelloWorldCamel
+{
+	public static void main(String args[])
+	{
+		CamelContext context=new DefaultCamelContext();
+	}
+}

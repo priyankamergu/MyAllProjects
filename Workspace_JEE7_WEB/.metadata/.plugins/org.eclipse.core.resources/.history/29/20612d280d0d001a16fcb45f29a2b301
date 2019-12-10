@@ -1,0 +1,58 @@
+package com.allianz.shopping.controller;
+import java.util.Date.*;
+import java.io.IOException;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.allianz.shopping.dao.OrderDAO;
+import com.allianz.shopping.dao.OrderDAOImpl;
+import com.allianz.shopping.model.Order;
+
+@WebServlet("/CheckOutController")
+public class CheckOutController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+    public CheckOutController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		OrderDAO orderdao=new OrderDAOImpl();
+			
+			
+		String username=(String)request.getSession().getAttribute("username");
+		
+		String product_id[]=request.getParameterValues("product_id");
+		if(product_id!=null && product_id.length>0)
+		{
+			Order order=new Order();
+			order.setDate(new java.util.Date());
+			order.setOredr_status("Ordered");
+			order.setUserName(username);
+			
+			int order_id=orderdao.addOrder(order)
+;			order.setPrice(0);
+			
+			System.out.println("Your order id is"+);
+			
+			
+		}
+		
+	}
+
+}

@@ -1,0 +1,7 @@
+
+
+public interface AddToCartDAO
+{
+	public boolean addToCart(AddToCart add) ;
+	
+}

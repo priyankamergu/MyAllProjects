@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+body {background-color: LightGray;}
+h3   {color: blue;}
+h1   {color: green;}
+p    {color: red;}
+</style>
+</head>
+<body>
+<form action="LoginServlet">
+<center><h1>Login Here </h1>
+<h3>UserName : <input type="text" name="uname"></h3><br>
+<h3>Password : <input type="password" name="upwd"></h3><br>
+<input type="submit" value="Submit"><br>
+<a href="Registration.jsp">If You are New User Please Register</a>
+</center>
+</form>
+</body>
+</html>
+
+

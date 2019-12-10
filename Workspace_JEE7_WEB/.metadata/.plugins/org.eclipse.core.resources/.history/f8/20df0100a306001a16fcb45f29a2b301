@@ -1,0 +1,9 @@
+package com.crunchify.restjersey;
+
+import javax.ws.rs.Path;
+
+@Path=("ftocservice")
+public class FoCSerivce 
+{
+
+}

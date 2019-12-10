@@ -1,0 +1,82 @@
+package com.user.data;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class UserDAOImpl implements UserDAO 
+{
+	boolean flag=false;
+	File file=null;
+	 public UserDAOImpl() 
+	 {	
+			file=new File("D:\\Allianz Pgm\\files\\user.txt");
+		
+	 }
+	
+	@Override
+	public boolean insertIntoFile(HashMap<Integer,HashSet<User>> hashMap) 
+	{
+		
+		try
+		{			
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(file));
+			
+			Set<Entry<Integer, HashSet<User>>> keys=hashMap.entrySet();
+			
+			for(Entry<Integer, HashSet<User>> key:keys)
+			{
+					HashSet<User> h=(HashSet<User>)key.getValue();	
+					Iterator<User> ite=h.iterator();
+					while(ite.hasNext())
+					{
+						oos.writeInt(h.add(e));
+						oos.writeObject(h.getUname());
+						oos.writeInt(h.getAge());
+						oos.writeFloat(h.getSalary());
+						flag=true;
+					}
+			}
+			
+		}
+		catch(IOException e)
+		{
+			System.err.print(e);
+		}
+		return flag;
+	}
+
+	@Override
+	public Object displayFromFile()
+	{
+		User u=null;
+		try
+		{
+			FileInputStream fis=new FileInputStream(file);
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			u=new User();
+			u.setId(ois.readInt());
+			u.setUname((String)ois.readObject());
+			u.setAge(ois.readInt());
+			u.setSalary(ois.readFloat());
+		}
+		catch(IOException | ClassNotFoundException e)
+		{
+			System.err.print(e);
+		}
+		if(u==null)
+		return null;
+		else
+			return u;
+	}
+
+}

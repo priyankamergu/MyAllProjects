@@ -1,0 +1,121 @@
+package com.interview.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.interview.dao.CandidateDao;
+import com.interview.pojo.Candidate;
+import com.interview.utility.DBUtilityConnection;
+
+public class CandidateDaoImpl implements CandidateDao
+{
+
+	@Override
+	public boolean insertCandiddate(Candidate candidate)
+	{
+		Connection connection=null;
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO  candidate(candidate_name,candidate_email_id,candidate_mobile_no,candidate_marks,candidate_pancard_no,candidate_resume) values(?,?,?,?,?,?)";
+			PreparedStatement  preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, candidate.getCandidateName());
+			preparedStatement.setString(2, candidate.getCandidateEmailId());
+			preparedStatement.setString(3, candidate.getCandidateMobileNo());
+			preparedStatement.setDouble(4, candidate.getCandidateMarks());
+			preparedStatement.setString(5,candidate.getCandidatePanCardNo());
+			preparedStatement.setString(6, candidate.getCandidateResume());
+			
+			Integer result=preparedStatement.executeUpdate();
+			if(result>0)
+			{
+				System.out.println("Candidate->Inserted Successfully");
+				return true;
+			}
+			else
+			{
+				System.out.println("Candidate->Inserted Failed");
+				return false;
+			}
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{			
+			try 
+			{
+				connection.close();				
+			}
+			catch (SQLException e) 
+			{
+				
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteCandidate(Integer candidateId) {
+	
+		Connection connection=null;
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO  candidate WHERE candidate_id=?";
+			PreparedStatement  preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, candidateId);
+			
+			
+			Integer result=preparedStatement.executeUpdate();
+			if(result>0)
+			{
+				System.out.println("Candidate->Deleted Successfully");
+				return true;
+			}
+			else
+			{
+				System.out.println("Candidate->Deleted Failed");
+				return false;
+			}
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{			
+			try 
+			{
+				connection.close();				
+			}
+			catch (SQLException e) 
+			{
+				
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public List<Candidate> getAllCandidates() {
+		
+		return null;
+	}
+
+	@Override
+	public Candidate getbyCandidateId(Integer candidateId) {
+		
+		return null;
+	}
+
+}

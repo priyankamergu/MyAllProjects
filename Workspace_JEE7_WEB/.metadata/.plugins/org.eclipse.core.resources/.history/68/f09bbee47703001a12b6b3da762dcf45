@@ -1,0 +1,24 @@
+<%@page import="com.login.succfail.RegistrationPOJO"%>
+<%@page import="com.login.succfail.RegisterDAO"%>
+<%@page import="com.login.succfail.RegistreDAOImpl"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+RegisterDAO rdao=new RegistreDAOImpl();
+int id=(int)session.getAttribute("up");
+RegistrationPOJO r=(RegistrationPOJO)rdao.SerachUser(id);
+%>
+<form action=".jsp">
+Id :<input type="text" name="id" value="<%out.print(r.getId()); %>" required="required" readonly="readonly"> <br><br>
+First Name : <input tye="text" name="fname" placeholder=" Enter First Name" value="<%out.print(r.getFname()); %>" required="required" ><br><br>
+<input type="Submit" value="submit">
+</form>
+</body>
+</html>

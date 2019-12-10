@@ -1,0 +1,10 @@
+package com.login.succfail;
+
+public interface RegisterDAO
+{
+	public boolean register(RegistrationPOJO r);
+	public Integer UserUpdate(RegistrationPOJO r);
+	public RegistrationPOJO SerachUser(int id);
+	public boolean 
+	
+}

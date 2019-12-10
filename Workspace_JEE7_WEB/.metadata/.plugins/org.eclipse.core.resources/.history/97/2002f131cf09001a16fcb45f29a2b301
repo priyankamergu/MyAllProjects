@@ -1,0 +1,9 @@
+package com.allianz.shopping.mdoel;
+
+public class Product 
+{
+	private int id;
+	private String code;
+	private String description
+	private float price;
+}

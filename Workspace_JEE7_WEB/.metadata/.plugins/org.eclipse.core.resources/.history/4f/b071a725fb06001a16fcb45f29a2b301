@@ -1,0 +1,10 @@
+package com.user.data;
+
+import java.util.HashMap;
+import java.util.HashSet;
+
+public interface UserDAO 
+{
+	public boolean insertIntoFile(HashMap<Integer,HashSet>hashMap);
+	public Object displayFromFile();
+}

@@ -1,0 +1,16 @@
+package com.services.apachecamel.exxmaple1;
+
+import java.text.Normalizer.Form;
+
+import org.apache.camel.builder.RouteBuilder;
+
+public class FileCopyRouter extends RouteBuilder
+{
+
+	@Override
+	public void configure() throws Exception {
+		Form("file:c:\\tempFrom\\input_dir?noop").to(D:\\git path.text);
+		
+	}
+
+}

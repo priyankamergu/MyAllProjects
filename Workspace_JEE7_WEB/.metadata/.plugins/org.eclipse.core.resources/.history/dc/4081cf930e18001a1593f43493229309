@@ -1,0 +1,161 @@
+package com.interview.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.interview.dao.TechnicalTwoDao;
+import com.interview.pojo.Candidate;
+import com.interview.pojo.TechnicalTwo;
+import com.interview.utility.DBUtilityConnection;
+
+public class TechnicalTwoDaoImpl implements TechnicalTwoDao 
+{
+	
+	@Override
+	public boolean insertTechnicalTwo(TechnicalTwo techincalTwo) 
+	{
+		Connection connection=null;
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO technicaltwo(candidate_id,employee_id,review,remark,technical_two_status) values(?,?,?,?,?)";
+			PreparedStatement  preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, techincalTwo.getCandidateId());
+			preparedStatement.setInt(2, techincalTwo.getEmployeeId());
+			preparedStatement.setString(3, techincalTwo.getReview());
+			preparedStatement.setString(4, techincalTwo.getRemark());
+			preparedStatement.setString(5,techincalTwo.getTechnicalTwoStatus() );
+			
+			Integer result=preparedStatement.executeUpdate();
+			if(result>0)
+			{
+				System.out.println("TechincalTwo->Inserted Successfully");
+				return true;
+			}
+			else
+			{
+				System.out.println("TechincalTwo->Inserted Failed");
+				return false;
+			}
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{			
+			try 
+			{
+				connection.close();				
+			}
+			catch (SQLException e) 
+			{
+				
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteTechnicalTwo(Integer techincal_two_id)  
+	{
+		Connection connection=null;
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="DELETE FROM technicaltwo WHERE techincal_two_id=?";
+			PreparedStatement  preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, techincal_two_id);
+			
+			Integer result=preparedStatement.executeUpdate();
+			if(result>0)
+			{
+				System.out.println("TechincalTwo->Deleted Successfully");
+				return true;
+			}
+			else
+			{
+				System.out.println("TechincalTwo->Deleted Failed");
+				return false;
+			}
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{			
+			try 
+			{
+				connection.close();				
+			}
+			catch (SQLException e) 
+			{
+				
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public List<TechnicalTwo> getAllTechnicalTwos()
+	{
+		List<TechnicalTwo> listTechincalTwo=null;
+		Connection connection=null;
+		try
+		{
+			listTechincalTwo=new ArrayList<TechnicalTwo>();
+			connection=DBUtilityConnection.getConnection();
+			String sql="SELECT * FROM technicaltwo";
+			Statement statement=connection.createStatement();
+			ResultSet resultSet=statement.executeQuery(sql);
+			
+			while(resultSet.next())
+			{
+				TechnicalTwo techinalTwo=new TechnicalTwo();
+				techinalTwo.setTechnicalOneId(resultSet.getInt("technical_one_id"));
+				techinalTwo.setCandidateId(resultSet.getInt("candidate_id"));
+				techinalTwo.setEmployeeId(resultSet.getInt("employee_id"));
+				techinalTwo.setReview(resultSet.getString("	review"));
+				techinalTwo.setRemark(resultSet.getString("remark"));
+				techinalTwo.setTechnicalTwoStatus(resultSet.getString("technical_two_status"));
+				listTechincalTwo.add(techinalTwo);				
+			}
+		
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		finally
+		{			
+			try 
+			{
+				connection.close();				
+			}
+			catch (SQLException e) 
+			{
+				
+				e.printStackTrace();
+			}
+		}
+		return listTechincalTwo;
+	}
+
+	@Override
+	public List<TechnicalTwo> getAllByTechnicalTwoStatus(String technicalTwoStatus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

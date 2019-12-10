@@ -1,0 +1,26 @@
+package com.user.data;
+
+import java.util.Set;
+import java.util.*;
+
+public class UserMainMethod {
+
+	public static void main(String[] args) 
+	{
+		User u=null;
+		
+		Set<Integer,>
+		u=new User(1,"Neha",22,56.67f);
+		UserDAO user=new UserDAOImpl();
+		boolean res=user.insertIntoFile(u);
+		System.out.println(res);
+		u=user.displayFromFile();
+		System.out.println(" "+u.getId());
+		System.out.println(" "+u.getUname());
+		System.out.println(" "+u.getAge());
+		System.out.println(" "+u.getSalary());
+		
+
+	}
+
+}

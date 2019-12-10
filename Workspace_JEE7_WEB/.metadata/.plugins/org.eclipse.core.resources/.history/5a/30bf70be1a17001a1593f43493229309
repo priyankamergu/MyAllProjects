@@ -1,0 +1,7 @@
+package com.interview.pojo;
+
+public class candidate 
+{
+	private String candidate_Name;
+	
+}

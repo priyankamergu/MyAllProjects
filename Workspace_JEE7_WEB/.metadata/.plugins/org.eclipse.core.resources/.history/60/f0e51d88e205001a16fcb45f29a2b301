@@ -1,0 +1,16 @@
+package com.swt.classes;
+
+public class AbsoluteEx {
+
+	public AbsoluteEx(Display display)
+	{
+		
+	}
+	public static void main(String[] args) {
+		
+		
+		
+
+	}
+
+}

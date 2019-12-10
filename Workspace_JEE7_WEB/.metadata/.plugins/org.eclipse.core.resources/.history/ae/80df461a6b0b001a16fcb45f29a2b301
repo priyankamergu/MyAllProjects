@@ -1,0 +1,37 @@
+package com.allianz.shopping.dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import com.allianz.shopping.utility.DBUtilityConnection;
+
+public class CustomerDAOImpl implements CustomerDAO
+{
+
+	@Override
+	public boolean Login(String user,String pass) {
+		
+		Connection con=DBUtilityConnection.getConnection();
+		try
+		{
+			String sql="SELECT * FROM login where username=? and password=?";
+			
+			Statement stmt=con.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			while(rs.next())
+			{
+				
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public void registeration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

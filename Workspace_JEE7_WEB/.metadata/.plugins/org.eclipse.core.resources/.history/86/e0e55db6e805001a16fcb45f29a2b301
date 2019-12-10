@@ -1,0 +1,22 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+
+public class FormLayout {
+
+	public FormLayout(Display display)
+	{
+		
+	}
+	public void initUI(Display display)
+	{
+		
+	}
+	public static void main(String[] args) {
+		
+		
+		
+
+	}
+
+}

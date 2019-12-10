@@ -1,0 +1,125 @@
+package com.interview.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import com.interview.dao.EmployeeDao;
+import com.interview.pojo.Employee;
+import com.interview.utility.DBUtilityConnection;
+
+public class EmployeeDaoImpl implements EmployeeDao {
+
+	@Override
+	public boolean addEmployee(Employee employee) {
+
+		return false;
+	}
+
+	@Override
+	public boolean deleteEmployee(Integer employeeId) {
+
+		return false;
+	}
+
+	@Override
+	public boolean employeeLogin(String emailId, String password) {
+		
+		Connection conn = null;
+		try {
+
+			conn = DBUtilityConnection.getConnection();
+			String sqlQuery = "select * from employee where employee_email_id=? and employee_password=?";
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+			preparedStatement.setString(1, emailId);
+			preparedStatement.setString(2, password);
+
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				/* System.out.println("Employee LoggedIn Details -> " + rs.getString(2)); */
+				System.out.println("Employee -> LoggedIn Successfully....");
+				return true;
+			} else {
+				System.out.println("Employee -> LogIn Failed....");
+				return false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+
+		List<Employee> employeeList = new ArrayList<Employee>();
+
+		Connection conn = null;
+		try {
+
+			conn = DBUtilityConnection.getConnection();
+			String sqlQuery = "select * from employee";
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			System.out.println(
+					"\nAll Employee's List\nEmployeeId\tEmployeeName\tEmployeeDesignation\tEmployeeEmailId\tEmployeePassword");
+			while (rs.next()) {
+
+				int employeeId = rs.getInt(1);
+				String employeeName = rs.getString(2);
+				String employeeDesignation = rs.getString(3);
+				String employeeEmailId = rs.getString(4);
+				String employeePassword = rs.getString(5);
+
+				Employee employee = new Employee(employeeId, employeeName, employeeDesignation, employeeEmailId,
+						employeePassword);
+				employeeList.add(employee);
+				System.out.println("Employee List -> " + employeeList);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return employeeList;
+	}
+
+	@Override
+	public Employee getEmployeeByEmployeeId(Integer employeeId)
+	{
+		Employee employee=null;
+		Connection conn = null;
+		try {
+
+			conn = DBUtilityConnection.getConnection();
+			String sqlQuery = "select * from employee WHERE employee_id=?";
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+			preparedStatement.setInt(1, employeeId);
+
+			ResultSet rs = preparedStatement.executeQuery();
+			System.out.println(
+					"\nAll Employee's List\nEmployeeId\tEmployeeName\tEmployeeDesignation\tEmployeeEmailId\tEmployeePassword");
+			if (rs.next()) 
+			{
+
+				employee=new Employee();
+				employee.setEmployeeId(rs.getInt("employee_id"));
+				employee.setEmployeeName(rs.getString("employee_name"));
+				employee.setEmployeeDesignation(rs.getString("employee_designation"));
+				employee.setEmployeeEmailId(rs.getString("employee_email_id"));			
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return employee;
+	}
+
+}

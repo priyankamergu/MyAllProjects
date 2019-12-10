@@ -1,0 +1,72 @@
+package com.allianz.shopping.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
+
+import com.allianz.shopping.model.Category;
+import com.allianz.shopping.model.Product;
+import com.allianz.shopping.utility.DBUtilityConnection;
+import com.allianz.shopping.utility.DateUtility;
+
+public class CategoryDAOImpl  implements CategoryDAO
+{
+
+	@Override
+	public boolean addCategory(Category category) 
+	{
+		Connection connection=null;		
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO product(Category_ID,Category_Code,productDescription,productPrice,productDate) values(?,?,?,?,?)";
+			PreparedStatement ps=connection.prepareStatement(sql);
+			ps.setInt(1, category.getId());
+			ps.setString(2, category.getCode());
+			ps.setString(3, category.getDescription());
+			ps.setFloat(4, product.getPrice());
+			ps.setDate(5,DateUtility.convertUtilDateToSQLDate(product.getManfDate()));			
+			int no=ps.executeUpdate();
+			if(no>0)
+				return true;
+							
+		}
+		catch(Exception s)
+		{
+			s.printStackTrace();
+		}
+		return false;
+		return false;
+	}
+
+	@Override
+	public boolean updateCategory(Category catgeory) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteCategory(int id) {
+		
+		return false;
+	}
+
+	@Override
+	public List<Product> getALLCategory() {
+		
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLCategoryByName(String newPattern) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product getCategoryById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

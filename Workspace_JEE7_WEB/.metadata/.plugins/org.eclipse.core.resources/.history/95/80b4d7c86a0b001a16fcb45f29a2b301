@@ -1,0 +1,28 @@
+package com.allianz.shopping.dao;
+
+import java.sql.Connection;
+
+import com.allianz.shopping.utility.DBUtilityConnection;
+
+public class CustomerDAOImpl implements CustomerDAO
+{
+
+	@Override
+	public boolean Login() {
+		
+		Connection con=DBUtilityConnection.getConnection();
+		try
+		{
+			
+		}
+		
+		return false;
+	}
+
+	@Override
+	public void registeration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

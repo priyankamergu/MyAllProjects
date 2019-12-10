@@ -1,0 +1,7 @@
+package com.test.suit;
+
+public interface ProductDAO
+{
+	public void save();
+	public void delete();
+}

@@ -1,0 +1,27 @@
+
+<%@page import="com.allianz.shopping.dao.ProductdDAOImpl"%>
+<%@page import="com.allianz.shopping.dao.ProductDAO"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Product Details</h1>
+<table border=1>
+<% ProductDAO product=new ProductdDAOImpl();
+	product.getALLProducts();
+%>
+<tr>
+	<th>Id</th>
+	<th>Code</th>
+	<th>Description</th>
+	<th</th>
+</table>
+
+
+</body>
+</html>

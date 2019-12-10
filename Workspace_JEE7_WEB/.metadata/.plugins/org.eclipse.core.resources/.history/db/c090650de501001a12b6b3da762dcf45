@@ -1,0 +1,7 @@
+package com.login.succfail;
+
+public interface RegisterDAO
+{
+	public boolean register(RegistrationPOJO r);
+	public boolean Search(String f);
+}

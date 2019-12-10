@@ -1,0 +1,10 @@
+package com.allianz.shopping.model;
+
+public class Customer
+{
+	int cust_id;
+	String cust_name;
+	String password;
+	String username;
+	int cust_mobile;
+}

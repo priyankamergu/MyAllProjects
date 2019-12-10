@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://services.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.com" xmlns:intf="http://services.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://services.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="calculate">
+    <complexType>
+     <sequence>
+      <element name="term" type="xsd:int"/>
+      <element name="rate" type="xsd:int"/>
+      <element name="sumAssured" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculateResponse">
+    <complexType>
+     <sequence>
+      <element name="calculateReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculatePremium">
+    <complexType>
+     <sequence>
+      <element name="age" type="xsd:int"/>
+      <element name="term_of_Insurance" type="xsd:int"/>
+      <element name="smokingHabit" type="xsd:string"/>
+      <element name="accidentBenifit" type="xsd:string"/>
+      <element name="sumAssured" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculatePremiumResponse">
+    <complexType>
+     <sequence>
+      <element name="calculatePremiumReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="calculatePremiumRequest">
+
+      <wsdl:part element="impl:calculatePremium" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculateResponse">
+
+      <wsdl:part element="impl:calculateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculateRequest">
+
+      <wsdl:part element="impl:calculate" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculatePremiumResponse">
+
+      <wsdl:part element="impl:calculatePremiumResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SAOPService">
+
+      <wsdl:operation name="calculate">
+
+         <wsdl:input message="impl:calculateRequest" name="calculateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:calculateResponse" name="calculateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculatePremium">
+
+         <wsdl:input message="impl:calculatePremiumRequest" name="calculatePremiumRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:calculatePremiumResponse" name="calculatePremiumResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SAOPServiceSoapBinding" type="impl:SAOPService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="calculate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="calculateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="calculateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculatePremium">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="calculatePremiumRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="calculatePremiumResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SAOPServiceService">
+
+      <wsdl:port binding="impl:SAOPServiceSoapBinding" name="SAOPService">
+
+         <wsdlsoap:address location="http://localhost:7070/SOAPLifeInsurance/services/SAOPService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

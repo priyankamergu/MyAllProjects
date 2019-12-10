@@ -1,0 +1,25 @@
+package com.dao;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import com.suit.pojo.User;
+
+class UserDAOTest {
+	User user=new User(2,"Neha",22,76.5f);
+	@Test
+	public void testSaveUser()
+	{
+		UserDAO dao=new UserDAO();
+		 
+		user=dao.save(user);
+		assertNotNull(user);
+	}
+	@Test
+	public void testDeleteUser(user)
+	{
+		System.out.println("Successfully Deleted");
+	}
+
+}

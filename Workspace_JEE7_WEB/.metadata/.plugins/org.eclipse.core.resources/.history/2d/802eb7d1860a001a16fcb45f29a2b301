@@ -1,0 +1,6 @@
+package com.allianz.shopping.utility;
+
+public class DBUtilityConnection
+{
+	public static getConnection
+}

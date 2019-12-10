@@ -1,0 +1,84 @@
+package com.interview.pojo;
+
+public class TechnicalTwo 
+{
+	private Integer techincalTwoId;
+	private Integer technicalOneId;
+	private Integer candidateId;
+	private Integer employeeId;
+	private String technicalOneReview;
+	private String technicalOneRemark;
+	private String technicalTwoStatus;
+	
+	
+	
+	
+	public Integer getTechincalTwoId() 
+	{
+		return techincalTwoId;
+	}
+	public void setTechincalTwoId(Integer techincalTwoId)
+	{
+		this.techincalTwoId = techincalTwoId;
+	}
+	public Integer getTechnicalOneId() 
+	{
+		return technicalOneId;
+	}
+	public void setTechnicalOneId(Integer technicalOneId)
+	{
+		this.technicalOneId = technicalOneId;
+	}
+	public Integer getCandidateId()
+	{
+		return candidateId;
+	}
+	public void setCandidateId(Integer candidateId)
+	{
+		this.candidateId = candidateId;
+	}
+	public Integer getEmployeeId()
+	{
+		return employeeId;
+	}
+	public void setEmployeeId(Integer employeeId)
+	{
+		this.employeeId = employeeId;
+	}
+	public String getReview()
+	{
+		return review;
+	}
+	public void setReview(String review) 
+	{
+		this.review = review;
+	}
+	public String getRemark() 
+	{
+		return remark;
+	}
+	public void setRemark(String remark) 
+	{
+		this.remark = remark;
+	}
+	public String getTechnicalTwoStatus()
+	{
+		return technicalTwoStatus;
+	}
+	public void setTechnicalTwoStatus(String technicalTwoStatus) 
+	{
+		this.technicalTwoStatus = technicalTwoStatus;
+	}
+	@Override
+	public String toString() 
+	{
+		return "TechnicalTwo [techincalTwoId=" + techincalTwoId + ", technicalOneId=" + technicalOneId
+				+ ", candidateId=" + candidateId + ", employeeId=" + employeeId + ", review=" + review + ", remark="
+				+ remark + ", technicalTwoStatus=" + technicalTwoStatus + "]";
+	}
+	
+	
+	
+	
+	
+}

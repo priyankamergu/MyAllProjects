@@ -1,0 +1,7 @@
+package com.allianz.shopping.model;
+
+public class AddToCart
+{
+	private int add_To_Cart_id;
+	private int
+}

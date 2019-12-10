@@ -1,0 +1,9 @@
+package com.allianz.shopping.dao;
+
+import com.allianz.shopping.mdoel.Product;
+
+public class ProductDAO 
+{
+	public booleanaddProduct();
+	public boolean updateProduct(Product product);
+}

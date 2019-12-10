@@ -1,0 +1,15 @@
+package com.dao;
+
+
+
+public class UserDAO 
+{
+	public Use save(User user)
+	{
+		return user;
+	}
+	public void delete(User user)
+	{
+		
+	}
+}

@@ -1,0 +1,50 @@
+package com.allianz.shopping.controller;
+
+import java.io.IOException;
+import java.sql.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.allianz.shopping.utility.DateUtility;
+
+/**
+ * Servlet implementation class ProductDatabaseController
+ */
+@WebServlet("/ProductDatabaseController")
+public class ProductDatabaseController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+ 
+    public ProductDatabaseController() {
+        super();
+    
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String action=request.getParameter("action");
+		String id=request.getParameter("id");
+		if(action!=null && action.equals("new"))
+		{
+			response.sendRedirect("ProductEditDataBase.jsp");
+		}
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		int pid=Integer.parseInt(request.getParameter("id"));
+		String pcode=request.getParameter("code");
+		String pdesc=request.getParameter("desc");
+		float pprice=Float.parseFloat(request.getParameter("price"));
+		Date pdate=(Date)DateUtility.convertStringToDate(request.getParameter("date"));
+		
+		doGet(request, response);
+	}
+
+}

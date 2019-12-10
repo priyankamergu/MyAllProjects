@@ -1,0 +1,7 @@
+package com.servlet.request;
+
+public class TestBean
+{
+	String message="No message specified";
+	
+}

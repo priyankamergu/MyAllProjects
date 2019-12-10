@@ -1,0 +1,28 @@
+package com.user.data;
+
+import java.util.Set;
+import java.util.*;
+
+public class UserMainMethod {
+
+	public static void main(String[] args) 
+	{
+		HashSet<User> hashSet=new HashSet<User>();
+		hashSet.add(new User(1,"Neha",22,56.67f));
+		hashSet.add(new User(2,"Priya",23,77.06f));
+		
+		
+		UserDAO user=new UserDAOImpl();
+		Integer res=user.insertIntoFile(hashSet);
+		if(res==0)
+			System.out.println("No user are inserted");
+		else
+			System.out.println(res+" user are inserted");
+		user.displayFromFile(res);
+		
+		
+		
+
+	}
+
+}

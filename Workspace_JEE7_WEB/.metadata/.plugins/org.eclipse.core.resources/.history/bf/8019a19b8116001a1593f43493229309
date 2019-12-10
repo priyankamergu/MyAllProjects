@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Technical Assessment One Page</title>
+</head>
+<body>
+<form action="">
+<center>
+<br>
+<br>
+<h1><font color="darkblue">Technical Assessment 1</font></h1>
+<br>
+<br>
+<table>
+<tr>
+<td><font color="red">*</font><b>Student Name : </b></td><td><input type="text" name="studentName" placeholder="Enter FirstName and LastName...." required="required" size="35" /></td>
+</tr>
+
+</table>
+
+</center>
+</form>
+
+
+</body>
+</html>

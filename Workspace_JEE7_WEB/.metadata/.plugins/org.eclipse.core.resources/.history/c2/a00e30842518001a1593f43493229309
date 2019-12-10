@@ -1,0 +1,374 @@
+package com.interview.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+import com.interview.dao.CandidateDao;
+import com.interview.dao.EmployeeDao;
+import com.interview.dao.HrRoundDao;
+import com.interview.dao.TechnicalOneDao;
+import com.interview.dao.TechnicalTwoDao;
+import com.interview.dao.impl.CandidateDaoImpl;
+import com.interview.dao.impl.EmployeeDaoImpl;
+import com.interview.dao.impl.HrRoundDaoImpl;
+import com.interview.dao.impl.TechnicalOneDaoImpl;
+import com.interview.dao.impl.TechnicalTwoDaoImpl;
+import com.interview.pojo.Candidate;
+import com.interview.pojo.Employee;
+import com.interview.pojo.HrRound;
+import com.interview.pojo.TechnicalOne;
+import com.interview.pojo.TechnicalTwo;
+
+@WebServlet("/TechnicalOneController")
+public class TechnicalOneController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
+
+	
+	static HrRoundDao hrRoundDao=new HrRoundDaoImpl();
+	static TechnicalOneDao technicalOneDao = new TechnicalOneDaoImpl();
+	static TechnicalTwoDao technicalTwoDao=new TechnicalTwoDaoImpl();
+	static EmployeeDao employeeDao = new EmployeeDaoImpl();
+	static CandidateDao candidateDao=new CandidateDaoImpl();
+
+	public TechnicalOneController()
+	{
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException 
+	{
+		PrintWriter out=response.getWriter();
+		
+		
+		String action = request.getParameter("action");
+		System.out.println("Action -> " + action);
+		// Delete from TechnicalOne by candidateId
+		if (action != null && action.equals("deleteTechnicalOne"))
+		{
+			String candidateId = request.getParameter("candidateId");
+			boolean flag = technicalOneDao.deleteTechnicalOne(Integer.parseInt(candidateId));
+			if (flag) 
+			{
+				System.out.println("TechnicalOneController -> Delete TechnicalOne Successfull.....");
+				response.sendRedirect("TechnicalOneController");
+			}
+		}
+		//Displaying of Technical one list
+		else if(action != null && action.equals("displayTechincalOne"))
+		{
+			Integer candidateId=Integer.valueOf(request.getParameter("candidateId"));
+			System.out.println("Candidate id"+candidateId);
+			Candidate candidate=null;
+			
+			candidate=candidateDao.getbyCandidateId(candidateId);
+			if(candidate!=null)
+			{
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalAssessmentOne.jsp");
+				request.setAttribute("candidate", candidate);
+				requestDispatcher.forward(request, response);
+			}
+			else
+			{
+				out.print("Id not fetched");
+			}
+		}
+		// Technical Two Information of Candidate 
+		else if(action != null && action.equals("technicalTwoAssessment"))
+		{
+			Integer candidateId=Integer.parseInt(request.getParameter("candidateId"));
+			TechnicalOne technicalOne=technicalOneDao.getTechnicalOnebyCandidateId(candidateId);
+			if(technicalOne!=null)
+			{
+				Candidate candidate=candidateDao.getbyCandidateId(candidateId);
+				Employee employee=employeeDao.getEmployeeByEmployeeId(technicalOne.getEmployeeId());
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalAssessmentTwo.jsp");
+				request.setAttribute("technicalOne",technicalOne);
+				request.setAttribute("candidate",candidate);
+				request.setAttribute("employee", employee);
+				requestDispatcher.forward(request, response);
+				
+			}
+			else
+			{
+				out.print("Technical Two not found");
+			}
+		}
+		//HR Round Assessment
+		else if(action != null && action.equals("hrRoundAssessment"))
+		{
+			Integer candidateId=Integer.parseInt(request.getParameter("candidateId"));
+			
+			TechnicalTwo technicalTwo=technicalTwoDao.getTechnicalTwoByCandidateId(candidateId);
+			Integer employeeIdTwo=technicalTwo.getEmployeeId();
+			String technicalTwoEmployeeName=employeeDao.getEmployeeNameByEmployeeId(employeeIdTwo); 
+			out.print("Technical Two Name " +technicalTwoEmployeeName);
+			
+			TechnicalOne technicalOne=technicalOneDao.getTechnicalOnebyCandidateId(candidateId);
+			Integer employeeIdOne=technicalOne.getEmployeeId();
+			String technicalOneEmployeeName=employeeDao.getEmployeeNameByEmployeeId(employeeIdOne);
+			out.print("Technical One Mame " +technicalOneEmployeeName);
+			
+			Candidate candidate=candidateDao.getbyCandidateId(candidateId);
+			if(candidateId!=0)
+			{
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("HRAssessment");
+				request.setAttribute("technicalTwo",technicalTwo);
+				request.setAttribute("technicalOne",technicalOne);
+				request.setAttribute("candidate",candidate );
+				request.setAttribute("technicalTwoEmployeeName", technicalTwoEmployeeName);
+				request.setAttribute("technicalOneEmployeeName", technicalOneEmployeeName);
+			}
+			else
+			{
+				out.print("Not HR Assessment");
+			}
+			
+		}
+			
+			
+		// Redirect to Default Page i.e. index.jsp
+		else
+		{
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		PrintWriter out=response.getWriter();
+
+		String action = request.getParameter("action");
+		System.out.println("Action -> " + action);
+		
+		// Employee Login
+		if (action != null && action.equals("employeelogin")) 
+		{
+			List<Candidate> candidateList=new ArrayList<Candidate>();
+			String emailId = request.getParameter("employeeEmailId");
+			String password = request.getParameter("employeePassword");
+			System.out.println("*EmployeeLogin*");
+			
+			candidateList=candidateDao.getAllByMaxMarkCandidates(50.0);
+			Boolean flag = employeeDao.employeeLogin(emailId, password);
+
+			if (flag) 
+			{
+				System.out.println("TechnicalOneController -> Employee Login Successfull.....");
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("AptitudeSelectedList.jsp");
+				request.setAttribute("candidateList",candidateList);
+				requestDispatcher.forward(request, response);
+				
+			}
+			else
+			{
+				System.out.println("TechnicalOneController -> Employee Login Unsuccessfull.....");
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("EmployeeLogin.jsp");				
+				requestDispatcher.forward(request, response);
+			}
+		}
+
+		// Insert into TechnicalOne
+		else if (action != null && action.equals("insertTechnicalOne")) 
+		{
+
+			TechnicalOne technicalOne=new TechnicalOne();
+			Integer candidateId=Integer.parseInt(request.getParameter("candidateId"));
+			System.out.println("Candidate Id"+request.getParameter("candidateId"));
+			technicalOne.setCandidateId(Integer.parseInt(request.getParameter("candidateId")));
+			technicalOne.setEmployeeId(Integer.valueOf(request.getParameter("employeeId")));
+			
+			technicalOne.setReview(request.getParameter("review"));
+			technicalOne.setRemark(request.getParameter("remarks"));
+			technicalOne.setTechnicalOneStatus(request.getParameter("status"));
+			
+
+			Boolean flag = technicalOneDao.insertTechnicalOne(technicalOne);
+			if (flag)
+			{
+				out.print("Technical One Inserted");
+				List<TechnicalOne> techincalOneList=null;
+				techincalOneList=technicalOneDao.getAll();
+				List<Candidate> candidateList=new ArrayList<Candidate>();
+				for(TechnicalOne technicalOneResult:techincalOneList)
+				{
+					Candidate candidate=new Candidate();
+					candidate=candidateDao.getbyCandidateId(technicalOneResult.getCandidateId());
+					candidateList.add(candidate);
+					
+				}			
+				
+				
+				if(techincalOneList!=null)
+				{
+					RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalOneResult.jsp");
+					request.setAttribute("techincalOneList", techincalOneList);
+					request.setAttribute("candidateList", candidateList);
+				
+					requestDispatcher.forward(request, response);
+				}
+				else
+				{
+					out.print("No Candidate is Eligible");
+				}
+			} 
+			else
+			{
+				out.print("Technical One NOT Inserted");
+			}
+		} 
+		else if(action != null && action.equals("insertTechnicalTwo"))
+		{
+			Integer id=Integer.parseInt(request.getParameter("technicalOneId"));
+			out.print(id);
+			TechnicalTwo technicalTwo=new TechnicalTwo();
+			technicalTwo.setTechnicalOneId(Integer.valueOf(request.getParameter("technicalOneId")));
+			technicalTwo.setCandidateId(Integer.valueOf(request.getParameter("candidateId")));
+			technicalTwo.setEmployeeId(Integer.valueOf(request.getParameter("employeeIdRoundOne")));
+			technicalTwo.setReview(request.getParameter("review"));
+			technicalTwo.setRemark(request.getParameter("remarks"));
+			technicalTwo.setTechnicalTwoStatus(request.getParameter("status"));
+			out.print(technicalTwo);
+			Boolean flag=technicalTwoDao.insertTechnicalTwo(technicalTwo);
+			if(flag)
+			{
+				
+				out.print("Technical Two Inserted");
+				List<TechnicalTwo> techincalTwoList=null;
+				techincalTwoList=technicalTwoDao.getAllTechnicalTwos();
+				List<Candidate> candidateList=new ArrayList<Candidate>();
+				for(TechnicalTwo technicalTwoResult:techincalTwoList)
+				{
+					Candidate candidate=new Candidate();
+					candidate=candidateDao.getbyCandidateId(technicalTwoResult.getCandidateId());
+					candidateList.add(candidate);					
+				}			
+				if(techincalTwoList!=null)
+				{
+					RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalTwoResult.jsp");
+					request.setAttribute("techincalTwoList", techincalTwoList);
+					request.setAttribute("candidateList", candidateList);
+				
+					requestDispatcher.forward(request, response);
+				}
+				else
+				{
+					out.print("No Candidate is Eligible");
+				}
+			}
+			else
+			{
+				out.print("Technical Two Not Inserted");
+			}
+		}
+			
+		//Registrations of candidates
+		else if(action != null && action.equals("candidateRegister"))
+		{
+			Candidate candidate=new Candidate();
+			candidate.setCandidateName(request.getParameter("candidateName"));
+			candidate.setCandidateEmailId(request.getParameter("candidateEmail"));
+			candidate.setCandidateMobileNo(request.getParameter("candidateMobile"));
+			candidate.setCandidateMarks(Double.parseDouble(request.getParameter("candidateMarks")));
+			candidate.setCandidatePanCardNo(request.getParameter("candidatePancard"));
+			candidate.setCandidateResume(request.getParameter("candidateResume"));
+			
+			Boolean flag=candidateDao.insertCandiddate(candidate);
+			if(flag)
+			{
+				out.print("Registration Successfully Done");
+			}
+			else
+			{
+				out.print("Registration Unsuccessfully Done");
+			}
+			
+			
+		}
+		else if(action != null && action.equals("insertHrRound"))
+		{
+			HrRound hrRound = new HrRound();
+			
+			hrRound.setTechincalTwoId(Integer.parseInt(request.getParameter("technicalTwoId")));
+			hrRound.setCandidateId(Integer.parseInt(request.getParameter("candidateId")));
+			hrRound.setEmployeeId(Integer.parseInt(request.getParameter("hrId")));
+			hrRound.setRemark(request.getParameter("remarks"));
+			hrRound.setReview(request.getParameter("review"));
+			Boolean flag=hrRoundDao.insertHrRoundInformation(hrRound);
+			if(flag)
+			{
+					out.print("HR Round Inserted");
+					List<HrRound> hrRoundList=null;
+					hrRoundList=hrRoundDao.getAllHrRoundInformation();
+					List<Candidate> candidateList=new ArrayList<Candidate>();
+					List<TechnicalTwo> technicalTwoList=new ArrayList<TechnicalTwo>();
+					List<TechnicalOne> technicalOneList=new ArrayList<TechnicalOne>();
+					
+					List<String> employeeListOne=new ArrayList<String>();
+					List<String> employeeListTwo=new ArrayList<String>();
+					
+					for(HrRound round:hrRoundList)
+					{
+						Candidate candidate=new Candidate();
+						candidate=candidateDao.getbyCandidateId(round.getCandidateId());
+						candidateList.add(candidate);	
+						
+						TechnicalTwo technicalTwo=new TechnicalTwo();
+						technicalTwo=technicalTwoDao.getTechnicalTwoByCandidateId(round.getCandidateId());
+						technicalTwoList.add(technicalTwo);
+						
+						
+						TechnicalOne technicalOne=new TechnicalOne();
+						technicalOne=technicalOneDao.getTechnicalOnebyCandidateId(round.getCandidateId());
+						technicalOneList.add(technicalOne);
+						
+						String employeeNameOne=employeeDao.getEmployeeNameByEmployeeId(round.getEmployeeId());
+						employeeListOne.add(employeeNameOne);
+						String employeeNameTwo
+						
+					}	
+				
+					if(hrRoundList!=null)
+					{
+						RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalTwoResult.jsp");
+						request.setAttribute("hrRoundList", hrRoundList);
+						request.setAttribute("candidateList", candidateList);
+						request.setAttribute("technicalTwoList", technicalTwoList);
+						request.setAttribute("technicalOneList", technicalOneList);
+						requestDispatcher.forward(request, response);
+					}
+					else
+					{
+						out.print("No Candidate is Eligible");
+					}
+						
+			}
+			else
+			{
+				out.print("Hr Round not Insered...");
+			}
+			
+		}	
+		else 
+		{
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			//return;
+		}
+
+	}
+
+}

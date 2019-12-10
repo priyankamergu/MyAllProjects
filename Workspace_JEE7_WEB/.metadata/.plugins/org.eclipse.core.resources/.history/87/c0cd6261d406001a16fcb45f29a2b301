@@ -1,0 +1,8 @@
+package com.serializable;
+
+import java.io.Serializable;
+
+public class ObjectSerialize implements Serializable
+{
+
+}

@@ -1,0 +1,5 @@
+package com.interview.dao;
+
+public class CandidateDao {
+
+}

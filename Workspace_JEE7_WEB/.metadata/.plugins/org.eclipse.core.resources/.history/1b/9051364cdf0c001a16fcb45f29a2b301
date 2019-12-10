@@ -1,0 +1,6 @@
+package com.allianz.shopping.model;
+
+public class AddToCart
+{
+
+}

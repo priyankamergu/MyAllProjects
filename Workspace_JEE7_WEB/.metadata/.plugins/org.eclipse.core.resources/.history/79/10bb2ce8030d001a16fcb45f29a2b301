@@ -1,0 +1,26 @@
+package com.allianz.shopping.dao;
+
+import java.sql.Connection;
+
+import com.allianz.shopping.utility.DBUtilityConnection;
+
+public class AddToCartDAOimpl implements AddToCartDAO  
+{
+
+	@Override
+	public boolean addToCart() 
+	{
+		Connection con=DBUtilityConnection.getConnection();
+		String sql;
+		try
+		{
+			sql="INSERT INTO add_to_cart "
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+}

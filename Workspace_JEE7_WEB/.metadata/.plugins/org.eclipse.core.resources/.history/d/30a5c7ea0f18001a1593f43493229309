@@ -1,0 +1,14 @@
+package com.interview.dao;
+
+import java.util.List;
+
+import com.interview.pojo.Candidate;
+import com.interview.pojo.TechnicalTwo;
+
+public interface TechnicalTwoDao 
+{
+	public boolean insertTechnicalTwo(TechnicalTwo techincalTwo); 
+	public boolean deleteTechnicalTwo(Integer techincal_two_id);
+	public List<TechnicalTwo> getAllTechnicalTwos();
+	public List<TechnicalTwo> getAllByTechnicalTwoStatus(String technicalTwoStatus);
+}

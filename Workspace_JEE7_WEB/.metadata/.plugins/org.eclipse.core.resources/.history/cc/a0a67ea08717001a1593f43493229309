@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Aptitude Selected Student's Name</title>
+</head>
+<body>
+	<center>
+		<fieldset>
+			<h1>Aptitude Selected Candidate's Name</h1>
+			<form action="_______" method="post">
+				<table border="1">
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>PanCard</th>
+					</tr>
+					<tr>
+						<c:forEach items="${candidateList}" var="student">
+							<td>${candidateList.candidateId}</td>
+							<td>${candidateList.candidateName}</td>
+							<td>${candidateList.email}</td>
+							<td>${candidateList.phone}</td>
+							<td>${candidateList.pancard}</td>
+						</c:forEach>
+					</tr>
+				</table>
+				<br> <br> <br> <input type="button" value="Send Mail">
+		</fieldset>
+		</form>
+	</center>
+</body>
+</html>

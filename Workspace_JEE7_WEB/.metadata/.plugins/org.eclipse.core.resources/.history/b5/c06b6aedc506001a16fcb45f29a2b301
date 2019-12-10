@@ -1,0 +1,11 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+
+public class ButtonListener 
+{
+	public void buttonListner(Display display)
+	{
+		
+	}
+}

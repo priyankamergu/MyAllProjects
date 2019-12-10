@@ -1,0 +1,9 @@
+package com.interview.dao;
+
+import java.sql.Connection;
+
+public class CandidateDao
+{
+	public boolean insertCandiddate(Candidate candidate);
+	
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ProductDAOTest" project="TestSuitDemo" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.dao.ProductDAOTest" time="0.02" displayname="ProductDAOTest" uniqueid="[engine:junit-jupiter]/[class:com.dao.ProductDAOTest]">
+    <testcase name="testSaveProduct" classname="com.dao.ProductDAOTest" time="0.007" displayname="testSaveProduct()" uniqueid="[engine:junit-jupiter]/[class:com.dao.ProductDAOTest]/[method:testSaveProduct()]"/>
+    <testcase name="testDeleteProduct" classname="com.dao.ProductDAOTest" time="0.013" displayname="testDeleteProduct()" uniqueid="[engine:junit-jupiter]/[class:com.dao.ProductDAOTest]/[method:testDeleteProduct()]"/>
+  </testsuite>
+</testrun>

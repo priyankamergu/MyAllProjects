@@ -1,0 +1,8 @@
+package com.services.apachecamel.example1;
+
+import org.apache.camel.builder.RouteBuilder;
+
+public class HelloWorld extends RouteBuilder
+{
+	public void 
+}

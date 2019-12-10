@@ -1,0 +1,13 @@
+package com.login.succfail;
+
+public class RegistrationPOJO
+{
+	private String fname;
+	private String lname;
+	private String add;
+	private String mobile;
+	private String dept;
+	private String uname;
+	private String upwd;
+	
+}

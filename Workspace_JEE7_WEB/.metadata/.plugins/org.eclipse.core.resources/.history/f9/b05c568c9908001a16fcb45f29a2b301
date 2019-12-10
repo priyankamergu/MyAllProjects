@@ -1,0 +1,9 @@
+package com.prime;
+
+import javax.ws.rs.Path;
+
+@Path("/prime")
+public class Prime 
+{
+	
+}

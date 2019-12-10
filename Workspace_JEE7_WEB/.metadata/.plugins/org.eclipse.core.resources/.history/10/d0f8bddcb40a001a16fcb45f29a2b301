@@ -1,0 +1,108 @@
+package com.allianz.shopping.controller;
+
+import java.io.IOException;
+import java.sql.Date;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.websocket.SendResult;
+
+import com.allianz.shopping.dao.ProductDAO;
+import com.allianz.shopping.dao.ProductDAODatabaseImpl;
+import com.allianz.shopping.model.Product;
+import com.allianz.shopping.utility.DateUtility;
+
+/**
+ * Servlet implementation class ProductDatabaseController
+ */
+@WebServlet("/ProductDatabaseController")
+public class ProductDatabaseController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       ProductDAO impl=new ProductDAODatabaseImpl();
+ 
+    public ProductDatabaseController() {
+        super();
+    
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String action=request.getParameter("action");
+		String id=request.getParameter("id");
+		if(action!=null && action.equals("edit"))
+		{
+			String id=request.getParameter("id");
+			Product productEdit=impl.getProductById(Integer.parseInt(id));
+			
+			if(productEdit!=null)
+			{
+				RequestDispatcher rd=request.getRequestDispatcher("ProductEditDatabase.jsp");
+				request.setAttribute("productEdit",productEdit);
+				rd.forward(request, response);
+			}
+		}
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		String action=request.getParameter("action");
+		if(action!=null && action.equals("new"))
+		{
+			
+			Product product=new Product();
+			product.setId(Integer.parseInt(request.getParameter("id")));
+			product.setCode(request.getParameter("code"));
+			product.setDescription(request.getParameter("desc"));
+			product.setPrice(Float.parseFloat(request.getParameter("price")));
+			product.setManfDate(DateUtility.convertStringToDate(request.getParameter("date")));
+		
+			ProductDAO pdao=new ProductDAODatabaseImpl();
+			boolean result=pdao.addProduct(product);
+			
+			if(result)
+			{
+				
+				response.sendRedirect("ProductListDataBase.jsp");
+			}
+			else
+			{
+				System.out.println("Failed");
+			}
+		
+		}
+		
+		if(action!=null && action.equals("update") || action.equals("save"))
+		{
+			Product product=new Product();
+			product.setId(Integer.parseInt(request.getParameter("id")));
+			product.setCode(request.getParameter("code"));
+			product.setDescription(request.getParameter("desc"));
+			product.setPrice(Float.parseFloat(request.getParameter("price")));
+			product.setManfDate(DateUtility.convertStringToDate(request.getParameter("date")));
+			
+			
+			
+			boolean flag=false;
+			
+			if(impl.getProductById(Integer.parseInt(request.getParameter("id")))!=null)
+				flag=impl.updateProduct(product);
+			else
+				flag=impl.addProduct(product);
+			
+			
+			if(flag)
+				response.sendRedirect("ProductDatabaseController");
+			
+			
+		}
+		doGet(request, response);
+	}
+
+}

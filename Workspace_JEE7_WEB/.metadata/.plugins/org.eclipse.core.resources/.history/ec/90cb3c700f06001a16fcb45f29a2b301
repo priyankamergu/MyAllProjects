@@ -1,0 +1,12 @@
+package com.services;
+
+@Path(/hello)
+public class Hello {
+
+	
+	public String show()
+	{
+		return "Hello World";
+	}
+	
+}

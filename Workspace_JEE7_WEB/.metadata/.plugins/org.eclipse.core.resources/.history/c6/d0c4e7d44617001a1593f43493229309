@@ -1,0 +1,36 @@
+package com.interview.dao.impl;
+
+import java.util.List;
+
+import com.interview.dao.CandidateDao;
+import com.interview.pojo.Candidate;
+
+public class CandidateDaoImpl implements CandidateDao
+{
+
+	@Override
+	public boolean insertCandiddate(Candidate candidate)
+	{
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteCandidate(Integer candidateId) {
+	
+		return false;
+	}
+
+	@Override
+	public List<Candidate> getAllCandidates() {
+		
+		return null;
+	}
+
+	@Override
+	public Candidate getbyCandidateId(Integer candidateId) {
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,8 @@
+package com.customtag.jsp;
+
+public class MyDateFormat
+{
+	String pattern;
+	String value;
+	
+}

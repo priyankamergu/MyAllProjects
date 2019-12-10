@@ -1,0 +1,191 @@
+package com.login.succfail;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Collection;
+import java.util.Locale;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.RespectBinding;
+
+import com.util.DbConnection;
+
+public class RegistreDAOImpl  implements RegisterDAO
+{
+	PreparedStatement pstmt=null;
+	Connection con=null;
+	String sql=null;
+	public RegistreDAOImpl() throws Exception
+	{
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		con=DbConnection.getConnect();
+		
+	}
+	
+	@Override
+	public boolean register(RegistrationPOJO r)
+	{
+		boolean flag=false;
+		try
+		{			
+			sql="insert into registration(First_Name,Last_Name,Address,Mobile_No,Dept,UserName,Password) values(?,?,?,?,?,?,?)";
+			pstmt=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+
+			pstmt.setString(1,r.getFname());
+			pstmt.setString(2, r.getLname());
+			pstmt.setString(3, r.getAdd());
+			pstmt.setString(4,r.getMobile());
+			pstmt.setString(5,r.getDept());
+			pstmt.setString(6,r.getUname());
+			pstmt.setString(7, r.getUpwd());
+		//	System.out.println(pstmt.execute());
+			int i=pstmt.executeUpdate();
+			try
+			{
+				
+			ResultSet rs=pstmt.getGeneratedKeys();
+			if(rs.next())
+				{
+					r.setId(rs.getInt(1));
+					flag=true;
+							System.out.println(flag);
+				}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		} 
+		finally
+		{
+			try
+			{
+				pstmt.close();
+				con.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return flag;
+		
+	}
+
+	@Override
+	public Integer UserUpdate(RegistrationPOJO r) {
+		int result=0;
+		try
+		{
+			sql="update registration set First_Name=?,  Last_Name=?, Address=?, Mobile_No=?, Dept=?, UserName=?,  Password=? where ID=?";
+		//correct	sql="update registration set First_Name='"+r.getFname()+"',  Last_Name='"+r.getLname()+"', Address='"+r.getAdd()+"', Mobile_No='"+r.getMobile()+"', Dept='"+r.getDept()+"', UserName='"+r.getUname()+"',  Password='"+r.getUpwd()+"' where ID="+r.getId();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, r.getFname());
+			pstmt.setString(2, r.getLname());
+			pstmt.setString(3, r.getAdd());
+			pstmt.setString(4, r.getMobile());
+			pstmt.setString(5, r.getDept());
+			pstmt.setString(6, r.getUname());
+			pstmt.setString(7, r.getUpwd());
+			pstmt.setInt(8, r.getId());
+			result=pstmt.executeUpdate();
+			//System.out.println(result);
+		
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally
+		{
+			try
+			{
+				pstmt.close();
+				con.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		if(result==1)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}	
+	}
+
+	@Override
+	public RegistrationPOJO SerachUser(int id)
+	{
+		if(id>0)
+		{
+			RegistrationPOJO rpojo=new RegistrationPOJO();
+			try
+			{
+				sql="SELECT * FROM registration WHERE ID="+id;
+				pstmt=con.prepareStatement(sql);		
+				ResultSet rs=pstmt.executeQuery(sql);
+				while(rs.next())
+				{				
+				rpojo.setId(rs.getInt(1));
+				rpojo.setFname(rs.getString(2));
+				rpojo.setLname(rs.getString(3));
+				rpojo.setAdd(rs.getString(4));
+				rpojo.setMobile(rs.getString(5));
+				rpojo.setDept(rs.getString(6));
+				rpojo.setUname(rs.getString(7));
+				rpojo.setUpwd(rs.getString(8));	
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return rpojo;
+		}
+		else
+			return null;
+	}	
+	@Override
+	public boolean DeleteUser(int id)  
+	{
+		int result=0;
+		try
+		{
+			pstmt=con.prepareStatement("DELETE from registration where ID = ?");
+		    pstmt.setInt(1, id);
+			result=pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally
+		{
+		
+				pstmt.close();
+				con.close();
+			
+			
+		}
+		if(result==1)
+			return true;
+		else
+			return false;
+	}
+}

@@ -1,0 +1,22 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+
+public class LoginForm
+{
+	public LoginForm(Display display) {
+		initUI(display);
+		
+	}
+	public void initUI(Display display)
+	{
+		Label label1=new Label();
+		label1.setText("Login Page");
+		
+	}
+	public static void main(String args[])
+	{
+		LoginForm log=new LoginForm(new Display());
+	}
+}

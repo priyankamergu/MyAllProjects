@@ -1,0 +1,41 @@
+package com.services.apachecamel.exxmaple1;
+
+import org.apache.camel.CamelContext;
+import org.apache.camel.ConsumerTemplate;
+import org.apache.camel.ProducerTemplate;
+
+import org.apache.camel.impl.DefaultCamelContext;
+
+public class FileCopyRouterMain
+{
+
+	public static void main(String args[])
+	{
+		//creating an instance for camel context
+		CamelContext context=new DefaultCamelContext();
+		
+		//creating an instance for router
+		FileCopyRouter route=new FileCopyRouter();
+		try
+		{
+			//adding router to context
+			context.addRoutes(route);
+			
+			//starting the camel context
+			context.start();
+			
+			ProducerTemplate producerTemplate=context.createProducerTemplate();
+			producerTemplate.sendBody("direct:start","this message send by produce");
+			ConsumerTemplate consumerTemplate=context.createConsumerTemplate();
+			
+			
+			//stopping the camel context
+			context.stop();
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+}

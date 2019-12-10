@@ -1,0 +1,14 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+
+public class LoginForm
+{
+	public LoginForm() {
+		
+	}
+	public void initUI(Display display)
+	{
+		
+	}
+}

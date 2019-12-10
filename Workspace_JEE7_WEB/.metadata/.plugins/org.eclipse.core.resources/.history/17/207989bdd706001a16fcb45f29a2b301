@@ -1,0 +1,26 @@
+package com.user.data;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+public class UserDAOImpl implements UserDAO
+{
+
+	@Override
+	public boolean insertIntoFile(User u) 
+	{
+		try
+		{
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(file));
+		}
+		return false;
+	}
+
+	@Override
+	public User displayFromFile()
+	{
+		
+		return null;
+	}
+
+}

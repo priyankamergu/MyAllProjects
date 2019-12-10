@@ -1,0 +1,18 @@
+package com.allianz.shopping.dao;
+
+import java.util.List;
+
+import com.allianz.shopping.model.Category;
+import com.allianz.shopping.model.Product;
+
+public class CategoryDAO
+{
+	public boolean addCaetgory(Category Caetgory);
+	public boolean updateCaetgory(Caetgory Caetgory);
+	public boolean deleteCaetgory(int id);
+	
+	public List<Product> getALLCaetgory();
+	public List<Product> getALLCaetgoryByName(String newPattern);
+	
+	public Product getCaetgoryById(int id);
+}

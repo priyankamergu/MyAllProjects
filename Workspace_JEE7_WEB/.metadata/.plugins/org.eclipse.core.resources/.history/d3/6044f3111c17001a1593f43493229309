@@ -1,0 +1,10 @@
+package com.interview.pojo;
+
+public class Employee
+{
+	private String employeeName;
+	private String employeeDesignation;
+	private String employeeEmailId;
+	
+	
+}

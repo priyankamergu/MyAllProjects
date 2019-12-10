@@ -1,0 +1,9 @@
+package com.allianz.shopping.dao;
+
+public interface AddToCartDAO
+{
+	public void addToCart() 
+	{
+		
+	}
+}

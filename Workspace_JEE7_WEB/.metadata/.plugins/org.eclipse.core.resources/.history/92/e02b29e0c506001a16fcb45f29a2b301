@@ -1,0 +1,8 @@
+package com.swt.classes;
+
+
+
+public class ButtonListener 
+{
+	public void buttonListner(Dispatch<T>)
+}

@@ -1,0 +1,12 @@
+package com.allianz.shopping.utility;
+
+import java.sql.Connection;
+
+public class DBUtilityConnection
+{
+	public static Connection getConnection()
+	{
+		Connection connection;
+		return null;
+	}
+}

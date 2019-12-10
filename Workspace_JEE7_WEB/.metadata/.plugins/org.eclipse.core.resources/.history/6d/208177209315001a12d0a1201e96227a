@@ -1,0 +1,38 @@
+package com.services.apachecamel.exxmaple1;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.json.simple.JsonObject;
+
+public class JsonToXML extends RouteBuilder 
+{
+ruyuyuu
+	@Override
+	public void configure() throws Exception {
+		from("direct:start").process(new Processor() {
+			
+			public void process(Exchange exchange) throws Exception {
+				//get the json
+				String json=exchange.getIn().getBody(String.class);
+				
+				//transform json to xml
+				JsonObject jsonObject=new JsonObject(json);
+				String xml=XML.toString(jsonObject);
+				
+				
+			}
+		});
+		
+		
+		
+		//start the context
+		
+		String json="{\"employee\":}\r\n"+" \"name\" : \"Priyanka Mergu \",\r\n" + "" + "\"age\" : 20\r\n"+ "}}";
+		System.out.println(json);
+		
+		//creating the consumer template
+		con
+	}
+	
+}

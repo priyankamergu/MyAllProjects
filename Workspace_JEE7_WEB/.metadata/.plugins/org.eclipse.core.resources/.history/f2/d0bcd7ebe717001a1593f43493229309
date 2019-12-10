@@ -1,0 +1,102 @@
+package com.interview.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+import com.interview.dao.TechnicalOneDao;
+import com.interview.pojo.TechnicalOne;
+import com.interview.utility.DBUtilityConnection;
+
+public class TechnicalOneDaoImpl implements TechnicalOneDao {
+
+	@Override
+	public boolean insertTechnicalOne(TechnicalOne technicalOne) {
+
+		Connection conn = null;
+		try {
+
+			conn = DBUtilityConnection.getConnection();
+			String sqlQuery = "insert into technicalone (candidate_id, employee_id, review, remark, technical_one_status) values (?,?,?,?,?)";
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+			preparedStatement.setInt(1, technicalOne.getCandidateId());
+			preparedStatement.setInt(2, technicalOne.getEmployeeId());
+			preparedStatement.setString(3, technicalOne.getReview());
+			preparedStatement.setString(4, technicalOne.getRemark());
+			preparedStatement.setString(5, technicalOne.getTechnicalOneStatus());
+
+			int no = preparedStatement.executeUpdate();
+			if (no > 0) {
+				System.out.println("Technical One Details -> Inserted Successfully....");
+				return true;
+			} else {
+				System.out.println("Technical One Details -> Insertion Failed....");
+				return false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean deleteTechnicalOne(Integer candidateId) {
+		Connection conn;
+		try {
+			conn = DBUtilityConnection.getConnection();
+
+			String sqlQuery = "delete from technicalone where candidate_id=?";
+			PreparedStatement preparedStatement = conn.prepareStatement(sqlQuery);
+			preparedStatement.setInt(1, candidateId);
+
+			int no = preparedStatement.executeUpdate();
+			if (no > 0) {
+				System.out.println("Technical One Details -> Deletion Successfull....");
+				return true;
+			} else {
+				System.out.println("Technical One Details -> Deletion Failed....");
+				return false;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public List<TechnicalOne> getAll() {
+		return null;
+	}
+
+	@Override
+	public List<TechnicalOne> getAllByTechnicalOneStatus(String technicalOneStatus) 
+	{
+		List<TechnicalOne> technicalOneList=null;
+		try
+		{
+			Connection connection=DBUtilityConnection.getConnection();
+			String sql="SELECT * FROM  technicalone WHERE technical_one_status=?";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, technicalOneStatus);
+			ResultSet resultSet=preparedStatement.executeQuery();
+			
+			
+			while(resultSet.next())
+			{
+				TechnicalOne technicalOne=new TechnicalOne();
+				technicalOne.setCandidateId(resultSet.getInt("candidate_id"));
+				technicalOne.setEmployeeId(resultSet.getInt("employee_id"));
+				technicalOne.setReview(resultSet.getString("review"));
+				technicalOne.setRemark(resultSet.getString(""));
+			}
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,44 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.util.DbConnection"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<%
+int i;
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection con=DbConnection.getConnect();
+String sql = "select max(ID) as Id from registration";
+PreparedStatement s=con.prepareStatement(sql);
+ResultSet rs=s.executeQuery();
+if(rs.next())
+{
+	i=rs.getInt(1);
+}
+
+
+
+%>
+<body>
+<form action="RegistrationServlet">
+ID :<input type="text" name="id" class="form-control" value=<%=i %>>
+First Name    : <input type="text" placeholder="Enter First Name" name="fname" required="required"><br>
+Last Name     : <input type="text"  placeholder="Enter Last Name" name="lname" required="required"><br>
+Address       : <input type="text" placeholder="Enter Address" name="add" required="required"><br>
+Mobile Number : <input type="text" placeholder="Enter Mobile number" name="mobile" required="required"><br>
+Department    : <input type="text"  placeholder="Enter Department" name="dept" required="required"><br>
+Username      : <input type="text" placeholder="Enter Username" name="uname" required="required"><br>
+Password      : <input type="text" placeholder="Enter Password" name="upwd" required="required"><br><br>
+<input type="submit" value="Register">
+</form>
+</body>
+
+</html>

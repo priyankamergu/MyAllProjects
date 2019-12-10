@@ -1,0 +1,86 @@
+package com.allianz.shopping.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.allianz.shopping.dao.CustomerDAO;
+import com.allianz.shopping.dao.CustomerDAOImpl;
+import com.allianz.shopping.model.Customer;
+
+/**
+ * Servlet implementation class CustomerContoller
+ */
+@WebServlet("/CustomerContoller")
+public class CustomerContoller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    CustomerDAO cdao=new CustomerDAOImpl();
+    Customer customer=new Customer();
+    public CustomerContoller() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			customer.setCust_name(request.getParameter("cname"));
+			customer.setCust_mobile(request.getParameter("mobile"));
+			customer.setUsername(request.getParameter(""));
+			customer.setPassword(request.getParameter(""));
+			
+			
+			boolean res=cdao.registeration(customer);
+			if(res==true)
+			{
+				RequestDispatcher rs=request.getRequestDispatcher("ProductDatabaseController");
+				rs.forward(request, response);
+						
+			}
+			else
+			{
+				RequestDispatcher rs=request.getRequestDispatcher("Register.jsp");
+				rs.forward(request, response);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try
+		{
+			customer.setUsername(request.getParameter("uname"));
+			customer.setPassword(request.getParameter("pass"));
+			boolean res=cdao.validate(customer);
+			if(res==true)
+			{
+				RequestDispatcher rs=request.getRequestDispatcher("ProductDatabaseController");
+				rs.forward(request, response);
+			}
+			else
+			{
+				response.sendRedirect("Login.jsp");
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

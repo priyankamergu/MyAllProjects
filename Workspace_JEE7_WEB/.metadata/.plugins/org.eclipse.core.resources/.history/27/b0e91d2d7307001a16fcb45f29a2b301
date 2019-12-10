@@ -1,0 +1,7 @@
+package com.dao;
+
+public class UserDAO 
+{
+	public void save();
+	public void delete();
+}

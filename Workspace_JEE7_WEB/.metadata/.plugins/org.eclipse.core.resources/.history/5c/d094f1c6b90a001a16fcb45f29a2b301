@@ -1,0 +1,8 @@
+package com.allianz.shopping.model;
+
+public class Category 
+{
+	private String categoryId;
+	private String categoryCode;
+	private String categoryDescription;
+}

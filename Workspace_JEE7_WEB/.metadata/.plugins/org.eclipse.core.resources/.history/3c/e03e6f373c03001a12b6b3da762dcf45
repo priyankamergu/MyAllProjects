@@ -1,0 +1,39 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.util.DbConnection"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<%
+ int id=Integer.parseInt(request.getParameter("fname"));
+String field=request.getParameter("field");
+String value=request.getParameter("value");
+String sql="UPDATE registration SET "+field+" = '"+value+"' WHERE ID="+id;
+
+Connection connection = DbConnection.getConnect();
+PreparedStatement pstmt=connection.prepareStatement(sql);
+
+pstmt.executeUpdate(sql);
+if(pstmt!=null)
+{
+		out.print("User Update Succfully");
+		request.getRequestDispatcher("UserShow.jsp").include(request, response);
+}
+else
+{
+	out.print("Updation Failed");
+}
+	
+
+%>
+
+
+</body>
+</html>

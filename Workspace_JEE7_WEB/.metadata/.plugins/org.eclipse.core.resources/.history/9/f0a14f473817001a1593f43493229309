@@ -1,0 +1,45 @@
+package com.interview.dao.impl;
+
+import java.sql.Connection;
+import java.util.List;
+
+import com.interview.dao.TechnicalTwoDao;
+import com.interview.pojo.Candidate;
+import com.interview.pojo.TechnicalTwo;
+import com.interview.utility.DBUtilityConnection;
+
+public class TechnicalTwoDaoImpl implements TechnicalTwoDao 
+{
+
+	@Override
+	public boolean insertTechnicalTwo(Candidate candidate) 
+	{
+		Connection connection=DBUtilityConnection.getConnection();
+		try
+		{
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteTechnicalTwo(Candidate candidate) 
+	{
+		
+		return false;
+	}
+
+	@Override
+	public List<TechnicalTwo> getAll()
+	{
+		
+		return null;
+	}
+	
+}

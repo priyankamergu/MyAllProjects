@@ -1,0 +1,9 @@
+package com.services.apachecamel.exxmaple1;
+
+public class HelloWorldCamel
+{
+	public static void main(String args[])
+	{
+		
+	}
+}

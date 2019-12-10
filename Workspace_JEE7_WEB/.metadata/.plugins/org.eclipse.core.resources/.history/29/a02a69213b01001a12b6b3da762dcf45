@@ -1,0 +1,67 @@
+package com.login.succfail;
+import java.sql.*;
+import com.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class RegistrationServlet
+ */
+@WebServlet("/RegistrationServlet")
+public class RegistrationServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegistrationServlet() {
+        super();
+       
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter pw=response.getWriter();
+			RegistrationPOJO rpojo=new RegistrationPOJO();
+			rpojo.setFname(request.getParameter("fname"));
+			rpojo.setLname(request.getParameter("lname"));
+			rpojo.setAdd(request.getParameter("add"));
+			rpojo.setMobile(request.getParameter("mobile"));
+			rpojo.setDept(request.getParameter("dept"));
+			rpojo.setUname(request.getParameter("uname"));
+			rpojo.setUpwd(request.getParameter("upwd"));
+			
+			RegisterDAO reimpl=new RegistreDAOImpl();
+			boolean result=reimpl.register(rpojo);
+			try
+			{
+			if(result)
+			{
+					pw.print("Reister Successfully");
+					response.sendRedirect("Login.jsp");
+			}
+			else
+			{
+			pw.print("Not");	
+			}
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+}

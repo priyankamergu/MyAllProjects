@@ -1,0 +1,16 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+public class ButtonClass {
+
+	public static void main(String[] args) 
+	{
+		Display display=new Display();
+		final Shell shell=new Shell(display);
+		
+
+	}
+
+}

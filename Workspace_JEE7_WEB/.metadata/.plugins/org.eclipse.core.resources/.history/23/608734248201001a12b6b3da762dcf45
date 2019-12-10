@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript">
+
+var name=validate.uname.value;
+var pass=validate.passw.value;
+if(name.length==0)
+	{
+	alert("Empty");
+	name.focus;
+	}
+	if(name.length<1)
+		{
+		
+		}
+
+
+
+
+
+
+
+
+
+</script>
+
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+body {background-color: lightgray;}
+h3   {color: blue;}
+h1   {color: brown;
+		font-family: fantasy;
+		font-size: 300%
+		}
+p    {color: red;}
+</style>
+</head>
+<body>
+<form action="LoginServlet">
+<center><h1>Login Here </h1>
+<h3>UserName : <input type="text" name="uname"></h3><br>
+<h3>Password : <input type="password" name="upwd"></h3><br>
+<input type="submit" value="Submit"><br>
+<a href="Registration.jsp">If You are New User Please Register</a>
+</center>
+</form>
+</body>
+</html>
+
+

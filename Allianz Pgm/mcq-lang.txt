@@ -1,0 +1,5 @@
+1. Which of these classes is not included in java.lang?
+A. ByteB. IntegerC. ArrayD. Class
+
+2. Which of these is a process of converting a simple data type into a class?
+A. type wrapping  B. type conversion C. type casting D. None of the Mentioned

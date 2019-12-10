@@ -1,0 +1,23 @@
+package com.dao;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import com.suit.pojo.Product;
+
+class ProductDAOTest {
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+	public void testSaveProduct()
+	{
+		ProductDAO dao=new ProductDAO();
+		Product product=new Product(12,"Laptop","Electronics",2000f);
+		product=dao.save(product);
+		assertNotNull(product);
+	}
+
+}

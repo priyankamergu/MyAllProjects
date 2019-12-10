@@ -1,0 +1,9 @@
+package com.allianz.shopping.dao;
+
+
+
+public interface CustomerDAO 
+{
+	public boolean Login(CubicApproximator);
+	public void registeration();
+}

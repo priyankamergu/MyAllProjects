@@ -1,0 +1,21 @@
+package com.allianz.shopping.utility;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class DBUtilityConnection
+{
+	public static Connection getConnection()
+	{
+		Connection connection;
+		try
+		{
+			
+		}
+		catch(SQLException | ClassNotFoundException e)
+		{
+			
+		}
+		return null;
+	}
+}

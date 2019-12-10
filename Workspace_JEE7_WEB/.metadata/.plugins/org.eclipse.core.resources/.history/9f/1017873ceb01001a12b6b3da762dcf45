@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="com.util.DbConnection"%>
+<%@ page import="java.sql.*" %>
+<% Class.forName("com.mysql.cj.jdbc.Driver"); %>
+<HTML>
+    <HEAD>
+        <TITLE>Selecting tableName From a Database</TITLE>
+    </HEAD>
+
+    <BODY>
+        <H1>Selecting tableName From a Database</H1>
+
+        <% 
+        String fname=request.getParameter("fname");
+            Connection connection = DbConnection.getConnect();
+			PreparedStatement pstmt=connection.prepareStatement("select * from registration where First_Name = ?");
+          	pstmt.setString(1, fname);
+			ResultSet rs=pstmt.executeQuery();
+			
+        %>
+
+        <TABLE BORDER="1">
+            <TR>
+                <TH>First Name</TH>
+                <TH>Last Name</TH>
+                <TH>Address</TH>
+                <TH>Mobile Number</TH>
+                <TH>Department</TH>
+                <TH>UserName</TH>
+                <TH>Password</TH>
+            </TR>
+            <% while(rs.next()){ %>
+            <TR>
+                <TD> <%= rs.getString(1) %></td>
+                <TD> <%= rs.getString(2) %></TD>
+                <TD> <%= rs.getString(3) %></TD>
+                <TD> <%= rs.getString(4) %></TD>
+                <TD> <%= rs.getString(5) %></TD>
+                <TD> <%= rs.getString(6) %></TD>
+                <TD> <%= rs.getString(7) %></TD>
+            </TR>
+            <% } %>
+        </TABLE>
+    </BODY>
+</HTML>

@@ -1,0 +1,52 @@
+package com.allianz.shopping.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import com.allianz.shopping.model.Order;
+import com.allianz.shopping.utility.DBUtilityConnection;
+import com.allianz.shopping.utility.DateUtility;
+
+public class OrderDAOImpl implements OrderDAO
+{
+
+	@Override
+	public int addOrder(Order o) {
+		int orderID = 0;
+		Connection con=DBUtilityConnection.getConnection();
+		String sql;
+		
+		try
+		{
+			sql="INSERT INTO orders(Order_Date,Status,Username,Total_Price) values(?,?,?,?)";
+			PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			
+			ps.setDate(1, DateUtility.convertUtilDateToSQLDate(o.getDate()));
+			ps.setString(2,o.getOredr_status());
+			ps.setString(3, o.getUserName());
+			ps.setFloat(4, o.getPrice());
+			int no=ps.executeUpdate();
+			if(no>0)
+
+			{
+				try(ResultSet generateKeys=ps.getGeneratedKeys())
+				{
+					if(generateKeys.next())
+					{
+						orderID=generateKeys.getInt(1);
+						System.out.println(orderID);
+					}
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return orderID;
+	}
+
+}

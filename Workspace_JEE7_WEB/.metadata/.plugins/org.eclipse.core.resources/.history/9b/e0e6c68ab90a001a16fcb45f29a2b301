@@ -1,0 +1,49 @@
+package com.allianz.shopping.controller;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import com.allianz.shopping.dao.ProductDAO;
+import com.allianz.shopping.dao.ProductDAODatabaseImpl;
+import com.allianz.shopping.model.Product;
+import com.allianz.shopping.utility.DateUtility;
+
+
+public class ProductDatabaseController1
+{
+	public static void main(String args[])
+	{
+		Product p1=new Product(101,"colgate1","Colgate1 Tube",50,DateUtility.convertStringToDate("12/10/2019"));//you can import static com.allianz.shppoinh.tutitly if you dont want to use thorugh class name
+		//Product p2=new Product(102,"colgate2","Colgate2 Tube",60,DateUtility.convertStringToDate("14/10/2019"));
+//		Product p3=new Product(103,"colgate3","Colgate3 Tube",40,DateUtility.convertStringToDate("13/10/2019"));
+//		Product p4=new Product(104,"colgate4","Colgate4 Tube",70,DateUtility.convertStringToDate("15/10/2019"));
+//		Product p5=new Product(105,"colgate5","Colgate5 Tube",80,DateUtility.convertStringToDate("18/10/2019"));
+		ProductDAO productObj=new ProductDAODatabaseImpl();
+		//boolean r=productObj.addProduct(p2);
+		//System.out.println(r);
+		//productObj.addProduct(p2);
+		
+		
+		
+		List<Product> productList=new ArrayList<Product>();
+		//productList=productObj.getALLProductByName("colgate2");
+	//		productList=productObj.getALLProductByPrice(10.0f,30.0f);
+		
+		
+		//System.out.println(productList);
+		//System.out.println(" "+productObj.getProductById(102));
+		System.out.println(" "+productObj.updateProduct(p1));
+//		Iterator< Product> it=productList.iterator();
+//		while (it.hasNext())
+//		{
+//			System.out.println((Product)
+//					
+//					
+//					it.next());
+//		}
+		
+		
+		
+	}
+}

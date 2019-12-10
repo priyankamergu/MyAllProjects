@@ -1,0 +1,76 @@
+package com.interview.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
+
+import com.interview.dao.TechnicalTwoDao;
+import com.interview.pojo.Candidate;
+import com.interview.pojo.TechnicalTwo;
+import com.interview.utility.DBUtilityConnection;
+
+public class TechnicalTwoDaoImpl implements TechnicalTwoDao 
+{
+
+	@Override
+	public boolean insertTechnicalTwo(TechnicalTwo techincalTwo) 
+	{
+		Connection connection=null;
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO technicaltwo(candidate_id,employee_id,review,remark,technical_two_status) values(?,?,?,?,?)";
+			PreparedStatement  preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setInt(1, techincalTwo.getCandidateId());
+			preparedStatement.setInt(2, techincalTwo.getEmployeeId());
+			preparedStatement.setString(3, techincalTwo.getReview());
+			preparedStatement.setString(4, techincalTwo.getRemark());
+			preparedStatement.setString(5,techincalTwo.getTechnicalTwoStatus() );
+			
+			int result=preparedStatement.executeUpdate();
+			if(result>0)
+			{
+				System.out.println("TechincalTwo->Inserted Successfully");
+				return true;
+			}
+			else
+			{
+				System.out.println("TechincalTwo->Inserted Failed");
+				return false;
+			}
+			
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteTechnicalTwo(Integer techincal_two_id) 
+	{
+		Connection connection=null;
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO technicaltwo(candidate_id,employee_id,review,remark,technical_two_status) values(?,?,?,?,?)";
+			PreparedStatement  preparedStatement=connection.prepareStatement(sql);
+		}
+		catch(Exception exception)
+		{
+			exception.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public List<TechnicalTwo> getAll()
+	{
+		
+		return null;
+	}
+	
+}

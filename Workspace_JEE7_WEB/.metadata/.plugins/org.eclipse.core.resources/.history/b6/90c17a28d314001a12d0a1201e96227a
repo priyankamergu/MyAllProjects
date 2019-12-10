@@ -1,0 +1,19 @@
+package com.services.apachecamel.exxmaple1;
+
+import java.io.File;
+import java.nio.file.Files;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+
+public class FileProcessorClass  implements Processor
+{
+
+	public void process(Exchange exchange) throws Exception
+	{
+		File file=exchange.getIn().getBody(File.class);
+		Files.write(paths.get(file.getAbsoluteFile()), "\n By ,\n Allianz Developer".getBytes(),)
+		
+	}
+
+}

@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="RegistrationServlet">
+First Name    : <input type="text" placeholder="Enter First Name" name="fname" required="required"><br>
+Last Name     : <input type="text"  placeholder="Enter Last Name" name="lname" required="required"><br>
+Address       : <input type="text" placeholder="Enter Address" name="add" required="required"><br>
+Mobile Number : <input type="text" placeholder="Enter Mobile number" name="mobile" required="required"><br>
+Department    : <input type="text"  placeholder="Enter Department" name="dept" required="required"><br>
+Username      : <input type="text" placeholder="Enter Username" name="uname" required="required"><br>
+Password      : <input type="text" placeholder="Enter Password" name="upwd" required="required"><br><br>
+<input type="submit" value="Register">
+</form>
+</body>
+
+</html>

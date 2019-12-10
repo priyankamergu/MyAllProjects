@@ -1,0 +1,25 @@
+package com.user.data;
+
+import java.util.Set;
+import java.util.*;
+
+public class UserMainMethod {
+
+	public static void main(String[] args) 
+	{
+		User u=null;
+		u=new User(1,"Neha",22,56.67f);
+		HashSet<User> hashSet=new HashSet<User>();
+		hashSet.add(u);
+		HashMap<Integer, HashSet> hashMap=new HashMap<Integer,HashSet>();
+		hashMap.put(1, hashSet);
+		UserDAO user=new UserDAOImpl();
+		boolean res=user.insertIntoFile(u);
+		System.out.println(res);
+		u=user.displayFromFile();
+		System.out.println(u);
+		
+
+	}
+
+}

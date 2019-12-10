@@ -1,0 +1,87 @@
+package com.interview.pojo;
+
+public class candidate 
+{
+	private String candidateName;
+	private String candidateEmailId;
+	private String candidateMobileNo;
+	private Double candidateMarks;
+	private String candidatePanCardNo;
+	private String candidateResumePath;
+	
+	
+	public candidate()
+	{
+		super();
+		this.candidateName = null;
+		this.candidateEmailId = null;
+		this.candidateMobileNo = null;
+		this.candidateMarks = 0.0;
+		this.candidatePanCardNo = null;
+		this.candidateResumePath = candidateResumePath;
+	}
+	
+	public candidate(String candidateName, String candidateEmailId, String candidateMobileNo, Double candidateMarks,
+			String candidatePanCardNo, String candidateResumePath)
+	{
+		super();
+		this.candidateName = candidateName;
+		this.candidateEmailId = candidateEmailId;
+		this.candidateMobileNo = candidateMobileNo;
+		this.candidateMarks = candidateMarks;
+		this.candidatePanCardNo = candidatePanCardNo;
+		this.candidateResumePath = candidateResumePath;
+	}
+	public String getCandidateName() 
+	{
+		return candidateName;
+	}
+	public void setCandidateName(String candidateName) 
+	{
+		this.candidateName = candidateName;
+	}
+	public String getCandidateEmailId() 
+	{
+		return candidateEmailId;
+	}
+	public void setCandidateEmailId(String candidateEmailId) 
+	{
+		this.candidateEmailId = candidateEmailId;
+	}
+	public String getCandidateMobileNo() 
+	{
+		return candidateMobileNo;
+	}
+	public void setCandidateMobileNo(String candidateMobileNo) 
+	{
+		this.candidateMobileNo = candidateMobileNo;
+	}
+	public Double getCandidateMarks() 
+	{
+		return candidateMarks;
+	}
+	public void setCandidateMarks(Double candidateMarks) 
+	{
+		this.candidateMarks = candidateMarks;
+	}
+	public String getCandidatePanCardNo() 
+	{
+		return candidatePanCardNo;
+	}
+	public void setCandidatePanCardNo(String candidatePanCardNo) 
+	{
+		this.candidatePanCardNo = candidatePanCardNo;
+	}
+	public String getCandidateResumePath() 
+	{
+		return candidateResumePath;
+	}
+	public void setCandidateResumePath(String candidateResumePath) 
+	{
+		this.candidateResumePath = candidateResumePath;
+	}
+	
+	
+	
+	
+}

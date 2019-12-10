@@ -1,0 +1,12 @@
+package com.user.data;
+
+public class UserMainMethod {
+
+	public static void main(String[] args) 
+	{
+		User u=new User(1,"Neha",22,56.67f);
+		
+
+	}
+
+}

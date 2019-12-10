@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Login_Servlet" method="get">
+UserName : <input type="text" name="uname"><br>
+Password : <input type="text" name="pwd"><br>
+Login: <input type="submit">
+
+<table>
+<tr><td><div contenteditable>I'm editable</div></td><td><div contenteditable>I'm also editable</div></td></tr>
+<tr><td>I'm not editable</td></tr>
+</table>
+</form>
+</body>
+</html>

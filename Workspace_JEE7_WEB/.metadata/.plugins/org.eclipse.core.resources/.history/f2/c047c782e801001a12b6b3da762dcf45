@@ -1,0 +1,42 @@
+<%@ page import="java.sql.*" %>
+
+<% Class.forName("com.mysql.cj.jdbc.Driver"); %>
+
+<HTML>
+    <HEAD>
+        <TITLE>Selecting tableName From a Database</TITLE>
+    </HEAD>
+
+    <BODY>
+        <H1>Selecting tableName From a Database</H1>
+
+        <% 
+        String fname=request.getParameter("fname");
+            Connection connection = DriverManager.getConnection(
+            		"jdbc:mysql://localhost:3306/allianz?serverTimezone=UTC", "root", "");
+
+            Statement statement = connection.createStatement() ;
+            ResultSet resultset = 
+                statement.executeQuery("select * from registration where city = ?") ; 
+        %>
+
+        <TABLE BORDER="1">
+            <TR>
+                <TH>ID</TH>
+                <TH>Name</TH>
+                <TH>City</TH>
+                <TH>State</TH>
+                <TH>Country</TH>
+            </TR>
+            <% while(resultset.next()){ %>
+            <TR>
+                <TD> <%= resultset.getString(1) %></td>
+                <TD> <%= resultset.getString(2) %></TD>
+                <TD> <%= resultset.getString(3) %></TD>
+                <TD> <%= resultset.getString(4) %></TD>
+                <TD> <%= resultset.getString(5) %></TD>
+            </TR>
+            <% } %>
+        </TABLE>
+    </BODY>
+</HTML>

@@ -1,0 +1,7 @@
+import com.allianz.shopping.model.AddToCart;
+
+public interface AddToCartDAO
+{
+	public boolean addToCart(AddToCart add) ;
+	
+}

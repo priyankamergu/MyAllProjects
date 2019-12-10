@@ -1,0 +1,40 @@
+package com.customtag.jsp;
+
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.TagSupport;
+
+
+public class MyDateFormat extends TagSupport
+{
+	String pattern;
+	String value;
+	public String getPattern() {
+		return pattern;
+	}
+	public void setPattern(String pattern) {
+		this.pattern = pattern;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
+	@Override
+	public int doStartTag() throws JspException
+	{
+		JspWriter out=pageContext.getOut();
+		try
+		{
+		out.print(value+ " "+pattern);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return SKIP_BODY;
+	}
+	
+}

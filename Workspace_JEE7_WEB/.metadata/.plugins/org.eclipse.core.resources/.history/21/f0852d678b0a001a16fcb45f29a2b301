@@ -1,0 +1,93 @@
+package com.allianz.shopping.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import com.allianz.shopping.model.Product;
+import com.allianz.shopping.utility.DBUtilityConnection;
+import com.allianz.shopping.utility.DateUtility;
+
+public class ProductDAODatabaseImpl implements ProductDAO
+{
+
+	@Override
+	public boolean addProduct(Product product) 
+	{
+		Connection connection=null;
+		
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO product(id,code,description,price,date) values(?,?,?,?,?)";
+			PreparedStatement ps=connection.prepareStatement(sql);
+			ps.setInt(1, product.getId());
+			ps.setString(2, product.getCode());
+			ps.setString(3, product.getDescription());
+			ps.setFloat(4, product.getPrice());
+			ps.setDate(5,DateUtility.convertUtilDateToSQLDate(product.getManfDate()));
+			
+			int no=ps.executeUpdate();
+			if(no>0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			
+			
+			
+		}
+		catch(Exception s)
+		{
+			s.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean updateProduct(Product product) 
+	{
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteProduct(int id) 
+	{
+		
+		return false;
+	}
+
+	@Override
+	public List<Product> getALLProducts() 
+	{
+		
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLProductByName(String newPattern)
+	{
+		
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLProductByPrice(float min, float max) 
+	{
+		
+		return null;
+	}
+
+	@Override
+	public Product getProductById(int id) 
+	{
+		
+		return null;
+	}
+	
+}

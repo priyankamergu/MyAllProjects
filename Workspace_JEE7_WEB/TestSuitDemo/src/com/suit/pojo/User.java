@@ -1,0 +1,67 @@
+package com.suit.pojo;
+import java.io.Serializable;
+	public class User 
+	{
+		 int id;
+		 int age;
+		String uname;
+		float salary;
+		
+		public User()
+		{
+			id=0;
+			age=0;
+			uname=null;
+			salary=0.0f;
+		}
+		
+		
+		public User(int id,  String uname,int age, float salary)
+		{
+			super();
+			this.id = id;
+			this.age = age;
+			this.uname = uname;
+			this.salary = salary;
+		}
+		public int getId() 
+		{
+			return id;
+		}
+		public void setId(int id)
+		{
+			this.id = id;
+		}
+		public int getAge()
+		{
+			return age;
+		}
+		public void setAge(int age) 
+		{
+			this.age = age;
+		}
+		public String getUname() 
+		{
+			return uname;
+		}
+		public void setUname(String uname)
+		{
+			this.uname = uname;
+		}
+		public float getSalary()
+		{
+			return salary;
+		}
+		public void setSalary(float salary) 
+		{
+			this.salary = salary;
+		}
+
+
+		@Override
+		public String toString() {
+			return "User [id=" + id + ", age=" + age + ", uname=" + uname + ", salary=" + salary + "]";
+		}		
+	}
+
+

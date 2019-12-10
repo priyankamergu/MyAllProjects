@@ -1,0 +1,57 @@
+package com.allianz.shopping.dao;
+
+import java.util.List;
+
+import com.allianz.shopping.model.Product;
+
+public class ProductDAODatabaseImpl implements ProductDAO
+{
+
+	@Override
+	public boolean addProduct(Product product) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean updateProduct(Product product) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteProduct(int id) 
+	{
+		
+		return false;
+	}
+
+	@Override
+	public List<Product> getALLProducts() 
+	{
+		
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLProductByName(String newPattern)
+	{
+		
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLProductByPrice(float min, float max) 
+	{
+		
+		return null;
+	}
+
+	@Override
+	public Product getProductById(int id) 
+	{
+		
+		return null;
+	}
+	
+}

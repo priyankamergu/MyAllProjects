@@ -1,0 +1,6 @@
+package com.servlet.request;
+
+public class TestBean
+{
+
+}

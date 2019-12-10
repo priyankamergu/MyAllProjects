@@ -1,0 +1,32 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="com.util.DbConnection"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1><b>Home Page</b></h1>
+<%	
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection con=DbConnection.getConnect();
+String sql="select * from registration where UserName=? and Password=?";
+PreparedStatement stmt=con.createStatement();
+stmt.s
+ResultSet rs=stmt.executeQuery(sql);
+
+HttpSession sess=request.getSession();
+
+sess.setAttribute("id", rs.getInt(1)); %>
+<a href="UserShow.jsp">List of User</a><br><br>
+<a href="Search.jsp">Search Perticular User</a><br><br>
+<a href="Update.jsp">Update</a><br><br>
+<a href="Delete.jsp">Delete</a><br><br>
+</body>
+</html>

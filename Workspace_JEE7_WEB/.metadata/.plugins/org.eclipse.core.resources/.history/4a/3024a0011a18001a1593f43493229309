@@ -1,0 +1,17 @@
+package com.interview.dao;
+
+import java.util.List;
+
+import com.interview.pojo.Employee;
+
+public interface EmployeeDao {
+
+	public boolean addEmployee(Employee employee);
+
+	public boolean deleteEmployee(Integer employeeId);
+
+	public boolean employeeLogin(String emailId, String password);
+
+	public List<Employee> getAllEmployees();
+	public Employee getEmployeeByEmployeeId(Integer employeeId);
+}

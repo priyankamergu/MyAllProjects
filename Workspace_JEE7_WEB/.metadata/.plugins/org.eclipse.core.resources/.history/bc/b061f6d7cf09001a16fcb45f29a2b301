@@ -1,0 +1,16 @@
+package com.allianz.shopping.dao;
+
+import java.util.List;
+
+import com.allianz.shopping.mdoel.Product;
+
+public class ProductDAO 
+{
+	public booleanaddProduct();
+	public boolean updateProduct(Product product);
+	public boolean deleteProduct(intid;)l
+	
+	public List<Product> getALLProducts();
+	public List<Product> getALLProducs();
+	public List<Product> getALLProducs();
+}

@@ -1,0 +1,33 @@
+<%@page import="com.login.succfail.RegistreDAOImpl"%>
+<%@page import="com.login.succfail.RegisterDAO"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="com.util.DbConnection"%>
+<%@ page import="java.sql.*" %>
+<% Class.forName("com.mysql.cj.jdbc.Driver"); %>
+<HTML>
+    <HEAD>
+       
+    </HEAD>
+
+    <BODY>
+       
+
+        <% 
+        int id=Integer.parseInt(request.getParameter("id"));
+		
+			RegisterDAO rdao=new RegistreDAOImpl();
+			boolean result=rdao.DeleteUser(id);
+			if(result==true)
+			{
+				out.print("Deletion Successfully Completed");
+				out.print("<a href='UserShow'>show</a>");
+			}
+			else
+				out.print("Deletion Failed");
+         
+        %>
+
+       <center><h1>Record Deleted</h1> </center>
+    </BODY>
+</HTML>

@@ -1,0 +1,52 @@
+package com.swt.classes;
+
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+public class FormLayout {
+
+	public FormLayout(Display display)
+	{
+		
+	}
+	public void initUI(Display display)
+	{
+		Shell shell=new Shell(display,SWT.SHELL_TRIM | SWT.CENTER);
+		FormLayout layout=new FormLayout(display);
+		Button button1=new Button(shell,SWT.PUSH);
+		button1.setText("OK");
+		
+		Button button2=new Button(shell,SWT.PUSH);
+		button2.setText("Cancel");
+		
+		FormData cancelData=new FormData(80,30);
+		cancelData.right=new FormAttachment(98);
+		cancelData.bottom=new FormAttachment(95);
+		
+		button2.setLayoutData(cancelData);
+		
+		
+		
+		FormData OkData=new FormData(80,30);
+		OkData.right=new FormAttachment(button2, -5, SWT.LEFT);
+		
+		
+		
+		
+		
+		
+		
+	}
+	public static void main(String[] args) {
+		
+		
+		
+
+	}
+
+}

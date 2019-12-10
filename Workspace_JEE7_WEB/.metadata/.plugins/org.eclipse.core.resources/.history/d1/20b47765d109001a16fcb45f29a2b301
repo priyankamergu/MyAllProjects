@@ -1,0 +1,72 @@
+package com.allianz.shopping.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.allianz.shopping.mdoel.Product;
+
+public class ProductdDAOImpl implements ProductDAO
+{
+
+	
+	private static List<Product> productList=new ArrayList<Product>();
+	
+	static
+	{
+		productList.add(new Product(101,"colgate1","Colgate1 Tube",50));
+		productList.add(new Product(102,"colgate2","Colgate2 Tube",60));
+		productList.add(new Product(103,"colgate3","Colgate3 Tube",40));
+		productList.add(new Product(104,"colgate4","Colgat4 Tube",70));
+		productList.add(new Product(105,"colgate5","Colgate5 Tube",80));
+	}
+	
+	
+	@Override
+	public boolean addProduct(Product product) {
+		productList.add(product);
+		return true;
+	}
+
+	@Override
+	public boolean updateProduct(Product product) {
+		
+		if(productList!=null && productList.size()>0)
+		{
+			for(int i=0;i<productList.size();i++)
+			{
+				Product productTemp=productList.get(i);
+				if(productTemp.getId()==product.getId())
+				{
+					productList.set(i,product)
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteProduct(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Product> getALLProducts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLProductByName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLProductByPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

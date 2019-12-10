@@ -1,0 +1,8 @@
+package snippet;
+
+public class Snippet {
+	RegisterDAO reimpl=new RegistreDAOImpl();
+				boolean result=reimpl.register(rpojo);
+				System.out.println(result);
+}
+

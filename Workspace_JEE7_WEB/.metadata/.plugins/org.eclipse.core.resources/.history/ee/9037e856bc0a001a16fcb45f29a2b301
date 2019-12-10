@@ -1,0 +1,88 @@
+package com.allianz.shopping.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.allianz.shopping.model.Category;
+import com.allianz.shopping.model.Product;
+import com.allianz.shopping.utility.DBUtilityConnection;
+import com.allianz.shopping.utility.DateUtility;
+
+public class CategoryDAOImpl  implements CategoryDAO
+{
+	private List<Category> categoryList=new ArrayList<Category>();
+	@Override
+	public boolean addCategory(Category category) 
+	{
+		Connection connection=null;		
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="INSERT INTO category(Category_ID,Category_Code,Category_Desc) values(?,?,?)";
+			PreparedStatement ps=connection.prepareStatement(sql);
+			ps.setInt(1, category.getCategoryId());
+			ps.setString(2, category.getCategoryCode());
+			ps.setString(3, category.getCategoryDescription());			
+			int no=ps.executeUpdate();
+			if(no>0)
+				return true;
+							
+		}
+		catch(Exception s)
+		{
+			s.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean updateCategory(Category category) 
+	{
+		Connection connection=null;		
+		try
+		{
+			connection=DBUtilityConnection.getConnection();
+			String sql="UPDATE category SET Category_Code=? where Category_ID=?";
+			PreparedStatement ps=connection.prepareStatement(sql);
+			ps.setString(1, category);
+			ps.setInt(2, category.getId());			
+			int no=ps.executeUpdate();
+			if(no>0)
+				return true;									
+		}
+		catch(Exception s)
+		{
+			s.printStackTrace();
+		}
+		return false;
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteCategory(int id) {
+		
+		return false;
+	}
+
+	@Override
+	public List<Product> getALLCategory() {
+		
+		return null;
+	}
+
+	@Override
+	public List<Product> getALLCategoryByName(String newPattern) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Product getCategoryById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

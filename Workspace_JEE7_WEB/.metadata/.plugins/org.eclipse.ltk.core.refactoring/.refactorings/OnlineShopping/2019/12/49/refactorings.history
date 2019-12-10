@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;OnlineInterviewProcessProject/src/com.interview.utility&apos;&#x0D;&#x0A;- Original project: &apos;OnlineShopping&apos;&#x0D;&#x0A;- Destination element: &apos;OnlineInterviewProcessProject/src/com.interview.utility&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     com.allianz.shopping.utility.DateUtility.java&#x0D;&#x0A;     com.allianz.shopping.utility.DBUtilityConnection.java" description="Copy compilation units" destination="=OnlineInterviewProcessProject/src&lt;com.interview.utility" element1="/src&lt;com.allianz.shopping.utility{DateUtility.java" element2="/src&lt;com.allianz.shopping.utility{DBUtilityConnection.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1575527589387" units="2" version="1.0"/>
+</session>

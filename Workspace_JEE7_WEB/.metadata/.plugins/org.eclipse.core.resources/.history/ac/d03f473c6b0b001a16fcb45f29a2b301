@@ -1,0 +1,7 @@
+package com.allianz.shopping.dao;
+
+public interface CustomerDAO 
+{
+	public boolean Login();
+	public void registeration();
+}

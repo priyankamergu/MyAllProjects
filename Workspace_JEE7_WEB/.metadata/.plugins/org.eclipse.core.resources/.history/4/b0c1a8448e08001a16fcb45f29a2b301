@@ -1,0 +1,9 @@
+package com.services;
+
+public class SAOPService 
+{
+	public double calculate(int term,int rate,double sumAssured)
+	{
+		
+	}
+}

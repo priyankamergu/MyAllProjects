@@ -1,0 +1,9 @@
+package com.javapapres.jee;
+
+public class AnimalTypeService
+{
+	public String animalType(String animal)
+	{
+		
+	}
+}

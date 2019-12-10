@@ -1,0 +1,10 @@
+package com.services.apachecamel.exxmaple1;
+
+
+public class FileProcessorMain
+{
+	public static void main(String args[])
+	{
+		
+	}
+}

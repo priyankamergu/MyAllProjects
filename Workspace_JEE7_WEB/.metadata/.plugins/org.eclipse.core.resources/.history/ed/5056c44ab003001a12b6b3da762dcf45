@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1><b>Home Page</b></h1>
+<%	HttpSession sess=request.getSession();
+
+//sess.setAttribute("id", rs.getInt(1)); %>
+<a href="UserShow.jsp">List of User</a><br><br>
+<a href="Search.jsp">Search Perticular User</a><br><br>
+<a href="Update.jsp">Update</a><br><br>
+<a href="Delete.jsp">Delete</a><br><br>
+</body>
+</html>

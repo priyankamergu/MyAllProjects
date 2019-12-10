@@ -1,0 +1,7 @@
+package com.allianz.shopping.controller;
+
+public class Order
+{
+	private int order_id;
+	private String Date;
+}

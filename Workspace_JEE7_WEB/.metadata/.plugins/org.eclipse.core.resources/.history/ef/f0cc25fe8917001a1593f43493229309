@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Login Page</title>
+</head>
+<body>
+	<center>
+		<form action="TechnicalOneController?action=employeelogin" method="post">
+		<!-- 	<c:if test="${param.action eq 'employeelogin'}">
+				<input type="hidden" name="action" value="employeelogin" />
+			</c:if>  -->
+			<br> <br>
+			<h1>
+				<font color="darkblue"> Employee Login </font>
+			</h1>
+
+			<table>
+				<tr>
+					<td>Email-Id</td>
+					<td>:</td>
+					<td><input type="text" name="employeeEmailId"></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td>:</td>
+					<td><input type="password" name="employeePassword"></td>
+				</tr>
+
+			</table>
+
+			<input type="submit" name="submit" value="Login">
+
+
+		</form>
+		
+		<a href="TechnicalOneController?action=edit&id=${product.id}">Edit</a>
+		
+		<
+	</center>
+</body>
+</html>

@@ -1,0 +1,36 @@
+package com.swt.classes;
+
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+public class FormLayout {
+
+	public FormLayout(Display display)
+	{
+		
+	}
+	public void initUI(Display display)
+	{
+		Shell shell=new Shell(display,SWT.SHELL_TRIM | SWT.CENTER);
+		FormLayout layout=new FormLayout(display);
+		Button button1=new Button(shell,SWT.PUSH);
+		button1.setText("OK");
+		
+		Button button2=new Button(shell,SWT.PUSH);
+		button2.setText("Cancel");
+		
+		
+		
+		
+	}
+	public static void main(String[] args) {
+		
+		
+		
+
+	}
+
+}

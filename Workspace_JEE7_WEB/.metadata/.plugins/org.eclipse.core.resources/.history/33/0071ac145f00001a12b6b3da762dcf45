@@ -1,0 +1,40 @@
+package com.servlet.request;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ServletFirst
+ */
+@WebServlet("/ServletFirst")
+public class ServletFirst extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletFirst() {
+        super();
+        
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter pw=response.getWriter();
+		RequestDispatcher rd;
+		pw.print("Before Forward..");
+		rd=request.getRequestDispatcher("ServletSecond").forward(request, response);
+		pw.print("After Forword..");
+		
+		
+	}
+
+
+
+}

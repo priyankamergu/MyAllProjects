@@ -1,0 +1,5 @@
+package com.javapapres.jee;
+
+public class AnimalTypeService {
+
+}

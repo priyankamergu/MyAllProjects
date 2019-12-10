@@ -1,0 +1,21 @@
+package com.services.apachecamel.exxmaple1;
+
+import org.apache.camel.CamelContext;
+import org.apache.camel.impl.DefaultCamelContext;
+
+public class HelloWorldCamel
+{
+	public static void main(String args[])
+	{
+		CamelContext context=new DefaultCamelContext();
+		HelloWorld route= new HelloWorld();
+		try
+		{
+			
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+}

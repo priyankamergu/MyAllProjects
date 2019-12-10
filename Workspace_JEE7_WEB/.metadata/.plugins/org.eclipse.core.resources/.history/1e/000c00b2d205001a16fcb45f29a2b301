@@ -1,0 +1,9 @@
+package com.swt.classes;
+
+import org.eclipse.swt.widgets.Display;
+
+public class HelloWorldSWT
+{
+	Display display=new Display();
+	
+}

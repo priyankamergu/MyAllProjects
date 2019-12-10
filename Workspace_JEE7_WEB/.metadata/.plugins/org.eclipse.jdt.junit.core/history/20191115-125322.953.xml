@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AllTests" project="TestSuitDemo" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="com.dao.AllTests" classname="com.dao.AllTests" time="0.0" displayname="AllTests" uniqueid="[engine:junit-vintage]/[runner:com.dao.AllTests]"/>
+</testrun>

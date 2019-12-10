@@ -1,0 +1,9 @@
+package com.cal;
+
+public class Calulator
+{
+	public int add(int a,int b)
+	{
+		
+	}
+}

@@ -1,0 +1,12 @@
+package com.allianz.shopping.dao;
+
+public class AddToCartDAOimpl implements AddToCartDAO  
+{
+
+	@Override
+	public boolean addToCart() {
+		
+		return false;
+	}
+
+}

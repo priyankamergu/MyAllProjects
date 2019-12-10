@@ -1,0 +1,11 @@
+package com.interview.dao;
+
+import com.interview.pojo.Candidate;
+import com.interview.pojo.TechnicalTwo;
+
+public interface TechnicalTwoDao 
+{
+	public boolean insertTechnicalTwo(Candidate candidate); 
+	public boolean deleteTechnicalTwo(Candidate candidate);
+	public List<TechnicalT> getAll();
+}

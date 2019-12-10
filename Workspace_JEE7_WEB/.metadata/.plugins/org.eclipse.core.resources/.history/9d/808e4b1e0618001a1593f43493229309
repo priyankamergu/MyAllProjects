@@ -1,0 +1,222 @@
+package com.interview.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+
+import com.interview.dao.CandidateDao;
+import com.interview.dao.EmployeeDao;
+import com.interview.dao.TechnicalOneDao;
+import com.interview.dao.impl.CandidateDaoImpl;
+import com.interview.dao.impl.EmployeeDaoImpl;
+import com.interview.dao.impl.TechnicalOneDaoImpl;
+import com.interview.pojo.Candidate;
+import com.interview.pojo.Employee;
+import com.interview.pojo.TechnicalOne;
+
+@WebServlet("/TechnicalOneController")
+public class TechnicalOneController extends HttpServlet 
+{
+	private static final long serialVersionUID = 1L;
+
+	
+	
+	static TechnicalOneDao technicalOneDao = new TechnicalOneDaoImpl();
+	static EmployeeDao employeeDao = new EmployeeDaoImpl();
+	static CandidateDao candidateDao=new CandidateDaoImpl();
+
+	public TechnicalOneController()
+	{
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException 
+	{
+		PrintWriter out=response.getWriter();
+		
+		
+		String action = request.getParameter("action");
+		System.out.println("Action -> " + action);
+		// Delete from TechnicalOne by candidateId
+		if (action != null && action.equals("deleteTechnicalOne"))
+		{
+			String candidateId = request.getParameter("candidateId");
+			boolean flag = technicalOneDao.deleteTechnicalOne(Integer.parseInt(candidateId));
+			if (flag) 
+			{
+				System.out.println("TechnicalOneController -> Delete TechnicalOne Successfull.....");
+				response.sendRedirect("TechnicalOneController");
+			}
+		}
+		//Displaying of Technical one list
+		else if(action != null && action.equals("displayTechincalOne"))
+		{
+			Integer candidateId=Integer.valueOf(request.getParameter("candidateId"));
+			System.out.println("Candidate id"+candidateId);
+			Candidate candidate=null;
+			
+			candidate=candidateDao.getbyCandidateId(candidateId);
+			if(candidate!=null)
+			{
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalAssessmentOne.jsp");
+				request.setAttribute("candidate", candidate);
+				requestDispatcher.forward(request, response);
+			}
+			else
+			{
+				out.print("Id not fetched");
+			}
+		}
+		// Technical Two Information of Candidate 
+		else if(action != null && action.equals("technicalTwoAssessment"))
+		{
+			Integer candidateId=Integer.parseInt(request.getParameter("candidateId"));
+			TechnicalOne technicalOne=technicalOneDao.getTechnicalOnebyCandidateId(candidateId);
+			if(technicalOne!=null)
+			{
+				Candidate candidate=candidateDao.getbyCandidateId(candidateId);
+				Employee employee=employeeDao.getEmployeeByEmployeeId(technicalOne.getEmployeeId());
+			}
+			request.setAttribute("technicalOne",technicalOne);
+			request.setAttribute("candidate",candidate);
+			
+			RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalAssessmentTwo.jsp");
+			
+		}
+			
+		// Redirect to Default Page i.e. index.jsp
+		else
+		{
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
+	{
+		PrintWriter out=response.getWriter();
+
+		String action = request.getParameter("action");
+		System.out.println("Action -> " + action);
+		
+		// Employee Login
+		if (action != null && action.equals("employeelogin")) 
+		{
+			List<Candidate> candidateList=new ArrayList<Candidate>();
+			String emailId = request.getParameter("employeeEmailId");
+			String password = request.getParameter("employeePassword");
+			System.out.println("*EmployeeLogin*");
+			
+			candidateList=candidateDao.getAllByMaxMarkCandidates(50.0);
+			Boolean flag = employeeDao.employeeLogin(emailId, password);
+
+			if (flag) 
+			{
+				System.out.println("TechnicalOneController -> Employee Login Successfull.....");
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("AptitudeSelectedList.jsp");
+				request.setAttribute("candidateList",candidateList);
+				requestDispatcher.forward(request, response);
+				
+			}
+			else
+			{
+				System.out.println("TechnicalOneController -> Employee Login Unsuccessfull.....");
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("EmployeeLogin.jsp");				
+				requestDispatcher.forward(request, response);
+			}
+		}
+
+		// Insert into TechnicalOne
+		else if (action != null && action.equals("insertTechnicalOne")) 
+		{
+
+			TechnicalOne technicalOne=new TechnicalOne();
+			Integer candidateId=Integer.parseInt(request.getParameter("candidateId"));
+			System.out.println("Candidate Id"+request.getParameter("candidateId"));
+			technicalOne.setCandidateId(Integer.parseInt(request.getParameter("candidateId")));
+			technicalOne.setEmployeeId(Integer.valueOf(request.getParameter("employeeId")));
+			
+			technicalOne.setReview(request.getParameter("review"));
+			technicalOne.setRemark(request.getParameter("remarks"));
+			technicalOne.setTechnicalOneStatus(request.getParameter("status"));
+			
+
+			Boolean flag = technicalOneDao.insertTechnicalOne(technicalOne);
+			if (flag)
+			{
+				out.print("Technical One Inserted");
+				List<TechnicalOne> techincalOneList=null;
+				techincalOneList=technicalOneDao.getAll();
+				List<Candidate> candidateList=new ArrayList<Candidate>();
+				for(TechnicalOne technicalOneResult:techincalOneList)
+				{
+					Candidate candidate=new Candidate();
+					candidate=candidateDao.getbyCandidateId(technicalOneResult.getCandidateId());
+					candidateList.add(candidate);
+					
+				}			
+				
+				
+				if(techincalOneList!=null)
+				{
+					RequestDispatcher requestDispatcher=request.getRequestDispatcher("TechnicalOneResult.jsp");
+					request.setAttribute("techincalOneList", techincalOneList);
+					request.setAttribute("candidateList", candidateList);
+				
+					requestDispatcher.forward(request, response);
+				}
+				else
+				{
+					out.print("No Candidate is Eligible");
+				}
+			} 
+			else
+			{
+				out.print("Technical One NOT Inserted");
+			}
+		} 
+		//Registrations of candidates
+		else if(action != null && action.equals("candidateRegister"))
+		{
+			Candidate candidate=new Candidate();
+			candidate.setCandidateName(request.getParameter("candidateName"));
+			candidate.setCandidateEmailId(request.getParameter("candidateEmail"));
+			candidate.setCandidateMobileNo(request.getParameter("candidateMobile"));
+			candidate.setCandidateMarks(Double.parseDouble(request.getParameter("candidateMarks")));
+			candidate.setCandidatePanCardNo(request.getParameter("candidatePancard"));
+			candidate.setCandidateResume(request.getParameter("candidateResume"));
+			
+			Boolean flag=candidateDao.insertCandiddate(candidate);
+			if(flag)
+			{
+				out.print("Registration Successfully Done");
+			}
+			else
+			{
+				out.print("Registration Unsuccessfully Done");
+			}
+			
+			
+		}
+			
+		else 
+		{
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			//return;
+		}
+
+	}
+
+}

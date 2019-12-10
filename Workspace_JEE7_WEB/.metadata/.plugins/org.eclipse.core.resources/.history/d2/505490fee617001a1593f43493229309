@@ -1,0 +1,15 @@
+package com.interview.dao;
+
+import java.util.List;
+import com.interview.pojo.TechnicalOne;
+
+public interface TechnicalOneDao {
+
+	// insert candidate info for technical one assessment
+	public boolean insertTechnicalOne(TechnicalOne technicalOne);
+
+	public boolean deleteTechnicalOne(Integer candidateId);
+
+	public List<TechnicalOne> getAll();
+
+}

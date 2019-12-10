@@ -1,0 +1,19 @@
+package com.swt.classes;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Tree;
+
+public class TreeListenerEx
+{
+	private static int shellWidth=1000;
+	private static int shellHieght=700;
+	private static void addWidgetsToShell(Display display,Shell shell)
+	{
+		Tree tree=new Tree(shell, SWT.MULTI | SWT.BORDER);
+		tree.setSize(150, 150);
+		tree.setLocation(5, 5);
+		
+	}
+}

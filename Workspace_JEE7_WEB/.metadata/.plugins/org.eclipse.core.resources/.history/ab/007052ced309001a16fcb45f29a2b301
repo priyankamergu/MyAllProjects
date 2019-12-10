@@ -1,0 +1,25 @@
+package com.allianz.shopping.utility;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
+public class DateUtility
+{
+	public Date convertStringToDate(String date)
+	{
+		SimpleDateFormat simple=new SimpleDateFormat("dd/mm/yyyy");
+		try
+		{
+			Date dateLocal=simple.parse(date);
+			return dateLocal;
+		}
+		catch(ParseException e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+}

@@ -1,0 +1,30 @@
+package com.interview.dao.impl;
+
+import java.util.List;
+
+import com.interview.dao.TechnicalTwoDao;
+import com.interview.pojo.Candidate;
+import com.interview.pojo.TechnicalTwo;
+
+public class TechnicalTwoDaoImpl implements TechnicalTwoDao 
+{
+
+	@Override
+	public boolean insertTechnicalTwo(Candidate candidate) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteTechnicalTwo(Candidate candidate) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<TechnicalTwo> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

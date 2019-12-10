@@ -1,0 +1,91 @@
+package com.swt.classes;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.TreeEvent;
+import org.eclipse.swt.events.TreeListener;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
+
+public class TreeListenerEx
+{
+	private static int shellWidth=1000;
+	private static int shellHieght=700;
+	private static void addWidgetsToShell(Display display,Shell shell)
+	{
+		Tree tree=new Tree(shell, SWT.MULTI | SWT.BORDER);
+		tree.setSize(150, 150);
+		tree.setLocation(5, 5);
+		TreeItem child1=new TreeItem(tree, SWT.None);
+		child1.setText("Child1");
+		
+		TreeItem child2=new TreeItem(tree, SWT.None);
+		child2.setText("Child2");
+		
+		TreeItem child3=new TreeItem(tree, SWT.None);
+		child3.setText("Child3");
+		
+		TreeItem child2_1=new TreeItem(child2, SWT.None);
+		child2_1.setText("Child2_1");
+		
+		TreeItem child2_2=new TreeItem(child2, SWT.None);
+		child2_2.setText("Child2_2");
+		
+		tree.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelection(SelectionEvent e)
+			{
+				TreeItem[] selectionItem=tree.getSelection();
+				System.out.println("Selected Items..");
+				for(int i=0;i<selectionItem.length;i++)
+				{
+					System.out.println(selectionItem[i].getText()+", ");
+				}
+				System.out.println();
+			}
+		});
+		
+		tree.addTreeListener(new TreeListener() {
+			
+			@Override
+			public void treeExpanded(TreeEvent arg0) {
+				System.out.println("Tree Expanded");
+				
+			}
+			
+			@Override
+			public void treeCollapsed(TreeEvent arg0) {
+				System.out.println("Tree Collapsed");
+				
+			}
+		});
+		
+		
+		shell.open();
+		while(!shell.isDisposed())
+		{
+			if(!display.readAndDispatch())
+			{
+				display.sleep();
+				
+			}
+		}
+		
+		//dispose the display
+		display.dispose();
+	}
+	
+	
+	public static void main(String args[])
+	{
+		
+		Display display=new Display();
+		Shell shell=new Shell(display);
+		
+		shell.setSize(shellWidth, shellHieght);
+		shell.setText("SWT tutorial");
+		TreeListenerEx.addWidgetsToShell(display, shell);
+	}
+}

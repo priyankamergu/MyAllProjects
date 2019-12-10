@@ -1,0 +1,5 @@
+package com.login.succfail;
+
+public interface RegisterDAO {
+
+}

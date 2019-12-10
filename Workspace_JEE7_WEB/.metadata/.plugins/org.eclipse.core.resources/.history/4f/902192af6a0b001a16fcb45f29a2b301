@@ -1,0 +1,18 @@
+package com.allianz.shopping.dao;
+
+public class CustomerDAOImpl implements CustomerDAO
+{
+
+	@Override
+	public boolean Login() {
+		
+		return false;
+	}
+
+	@Override
+	public void registeration() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

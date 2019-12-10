@@ -1,0 +1,9 @@
+package com.dao;
+
+import com.suit.pojo.Product;
+
+public class ProductDAO
+{
+	public Product save();
+	public void delete();
+}
